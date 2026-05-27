@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { NAV_LINKS } from "@/lib/navigation";
+import { SOCIAL_LINKS } from "@/lib/social-links";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -15,6 +16,26 @@ export function Footer() {
               Systems <span style={{ color: "#A6FF00" }}>/</span> Strategy{" "}
               <span style={{ color: "#A6FF00" }}>/</span> Design
             </p>
+            <nav className="site-footer__social" aria-label="Social media">
+              {SOCIAL_LINKS.map(({ label, href, placeholder }) =>
+                placeholder ? (
+                  <a key={label} href={href} className="site-footer__social-link">
+                    {/* LinkedIn URL TBD */}
+                    {label}
+                  </a>
+                ) : (
+                  <a
+                    key={label}
+                    href={href}
+                    className="site-footer__social-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {label}
+                  </a>
+                ),
+              )}
+            </nav>
           </div>
 
           <nav className="site-footer__nav" aria-label="Footer navigation">
