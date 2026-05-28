@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ContactPageContent } from "@/components/contact";
+import { ContactCard } from "@/components/contact";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with COREFRAME — let's build something that works.",
+  description: "Start a conversation with COREFRAME — tell us what you need.",
 };
 
 export default function ContactPage() {
-  return <ContactPageContent />;
+  return <ContactCard />;
 }

@@ -23,20 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/*
-          PLACEHOLDER: Brand fonts
-          Replace --font-display-placeholder and --font-body-placeholder
-          with @font-face declarations or next/font imports when assets are provided.
-        */}
-        <style>{`
-          :root {
-            --font-display-placeholder: ui-sans-serif, system-ui, sans-serif;
-            --font-body-placeholder: ui-sans-serif, system-ui, sans-serif;
-          }
-        `}</style>
-      </head>
-      <body className="font-body antialiased">
+      <body className="antialiased">
         <CustomCursor />
         <Nav />
         <main className="pt-[var(--nav-height)]">{children}</main>

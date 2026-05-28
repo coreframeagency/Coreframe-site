@@ -1,6 +1,42 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
+   Brand fonts
+   ───────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Tanod';
+  src: url('/fonts/tanod.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────────
    COREFRAME Design System
    Single source of truth for tokens & base styles
    ───────────────────────────────────────────── */
@@ -53,9 +89,9 @@
   --cf-warm-white: #f5f3eb;
   --cf-lime: #a6ff00;
 
-  /* Typography placeholders — replace when fonts are provided */
-  --font-display: var(--font-display-placeholder, ui-sans-serif, system-ui, sans-serif);
-  --font-body: var(--font-body-placeholder, ui-sans-serif, system-ui, sans-serif);
+  /* Typography */
+  --font-display: 'Tanod', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
 
   /* Spacing scale (8px grid) */
   --space-1: 8px;
@@ -162,8 +198,18 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.font-display,
+[class*="display"] {
   font-family: var(--font-display);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 400;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -172,10 +218,6 @@ h6 {
 /* ─────────────────────────────────────────────
    Typography utilities
    ───────────────────────────────────────────── */
-
-.font-display {
-  font-family: var(--font-display);
-}
 
 .font-body {
   font-family: var(--font-body);
@@ -2017,346 +2059,271 @@ h6 {
    ───────────────────────────────────────────── */
 
 .contact-page {
-  padding-bottom: 0;
+  min-height: 100dvh;
+  background: var(--cf-canvas);
+  padding: 140px var(--content-padding) var(--section-padding);
 }
 
-.contact-page-header {
-  padding-top: 140px;
-  padding-bottom: 80px;
+.contact-page__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 580px;
+  margin: 0 auto;
 }
 
-.contact-page-title {
+.contact-page__intro {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.contact-page__title {
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 2rem;
   line-height: 1.15;
   color: var(--cf-warm-white);
 }
 
 @media (min-width: 768px) {
-  .contact-page-title {
-    font-size: 3.5rem;
+  .contact-page__title {
+    font-size: 3rem;
   }
 }
 
-.contact-page-subline {
+.contact-page__subtitle {
   margin-top: 12px;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
   color: var(--cf-warm-white);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-.contact-page__layout {
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
-  padding-bottom: var(--section-padding);
+.contact-card {
+  width: 100%;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 28px;
+  border-radius: 2px;
 }
 
 @media (min-width: 768px) {
-  .contact-page__layout {
-    flex-direction: row;
-    gap: 48px;
-    align-items: flex-start;
-  }
-
-  .contact-page__layout > .contact-form,
-  .contact-page__layout > .contact-form-success {
-    flex: 0 0 55%;
-    max-width: 55%;
-  }
-
-  .contact-page__layout > .reveal {
-    flex: 0 0 45%;
-    max-width: 45%;
+  .contact-card {
+    padding: 48px;
   }
 }
 
-@media (max-width: 767px) {
-  .contact-page__layout {
-    padding-bottom: var(--section-padding-mobile);
-  }
-}
-
-/* Contact form */
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.contact-form__field {
+.contact-card__form {
   display: flex;
   flex-direction: column;
 }
 
-.contact-form__label {
+.contact-card__field {
+  margin-bottom: 24px;
+}
+
+.contact-card__field--message {
+  margin-bottom: 32px;
+}
+
+.contact-card__label {
+  display: block;
   margin-bottom: 8px;
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--cf-lime);
 }
 
-.contact-form__input,
-.contact-form__select,
-.contact-form__textarea {
+.contact-card__input,
+.contact-card__select,
+.contact-card__textarea {
   width: 100%;
-  background: #111111;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 14px 16px;
+  background: var(--cf-canvas);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 13px 16px;
   color: var(--cf-warm-white);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.5;
   border-radius: 2px;
   transition: border-color 0.2s ease;
 }
 
-.contact-form__input:focus,
-.contact-form__select:focus,
-.contact-form__textarea:focus {
+.contact-card__input:focus,
+.contact-card__select:focus,
+.contact-card__textarea:focus {
   border-color: var(--cf-lime);
   outline: none;
 }
 
-.contact-form__textarea {
-  min-height: 160px;
+.contact-card__select {
+  appearance: none;
+  padding-right: 40px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23A6FF00' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.contact-card__select option {
+  background: var(--cf-canvas);
+  color: var(--cf-warm-white);
+}
+
+.contact-card__textarea {
+  min-height: 120px;
   resize: vertical;
 }
 
-.contact-form__textarea::placeholder {
+.contact-card__textarea::placeholder {
   color: var(--cf-warm-white);
   opacity: 0.35;
 }
 
-.contact-form__select-wrap {
-  position: relative;
-}
-
-.contact-form__select-wrap::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  width: 8px;
-  height: 8px;
-  border-right: 2px solid var(--cf-lime);
-  border-bottom: 2px solid var(--cf-lime);
-  transform: translateY(-65%) rotate(45deg);
-  pointer-events: none;
-}
-
-.contact-form__select {
-  appearance: none;
-  padding-right: 40px;
-  cursor: pointer;
-}
-
-.contact-form__select option {
-  background: #111111;
-  color: var(--cf-warm-white);
-}
-
-.contact-form__submit {
+.contact-card__submit {
   width: 100%;
-  margin-top: 8px;
-  padding: 18px;
+  padding: 16px;
   background: var(--cf-lime);
   color: var(--cf-canvas);
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  border: none;
   border-radius: 2px;
   transition: background 0.2s ease;
 }
 
-.contact-form__submit:hover:not(:disabled) {
+.contact-card__submit:hover:not(:disabled) {
   background: #8fe600;
 }
 
-.contact-form__submit:disabled {
+.contact-card__submit:disabled {
   cursor: wait;
 }
 
-.contact-form__submit.is-loading {
-  animation: contact-btn-pulse 1.2s ease-in-out infinite;
-}
-
-@keyframes contact-btn-pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.65;
-  }
-}
-
-/* Contact form success */
-
-.contact-form-success {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 48px 0;
-}
-
-.contact-form-success__check {
+.contact-card__divider {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 24px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--cf-canvas);
-  background: var(--cf-lime);
-  border-radius: 50%;
+  gap: 16px;
+  margin: 24px 0;
 }
 
-.contact-form-success__heading {
+.contact-card__divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-card__divider-text {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.contact-card__whatsapp {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--cf-warm-white);
+  opacity: 0.7;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.contact-card__whatsapp:hover {
+  border-color: var(--cf-lime);
+  color: var(--cf-warm-white);
+  opacity: 1;
+}
+
+.contact-card__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: contact-success-fade-in 400ms ease forwards;
+}
+
+@keyframes contact-success-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.contact-card__success-check {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--cf-lime);
+}
+
+.contact-card__success-heading {
+  margin-top: 16px;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   line-height: 1.2;
   color: var(--cf-warm-white);
 }
 
-.contact-form-success__subline {
+.contact-card__success-subline {
   margin-top: 8px;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: var(--cf-warm-white);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
-/* Contact info column */
-
-.contact-info__statement {
-  margin-bottom: 48px;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--cf-warm-white);
-  opacity: 0.65;
-}
-
-.contact-info__details {
+.contact-page__details {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-}
-
-.contact-info__row {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-info__label {
-  margin-bottom: 4px;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--cf-lime);
-}
-
-.contact-info__value {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--cf-warm-white);
-  transition: opacity 0.2s ease;
-}
-
-a.contact-info__value:hover {
-  opacity: 0.75;
-}
-
-.contact-info__follow {
-  margin-top: 28px;
-}
-
-.contact-info__social {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
-}
-
-.contact-info__social-link {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--cf-warm-white);
-  opacity: 0.35;
-  transition: opacity 0.2s ease;
-}
-
-.contact-info__social-link:hover {
-  opacity: 1;
-}
-
-.contact-info__divider {
-  height: 1px;
-  margin: 40px 0;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.contact-info__reassurance p {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  line-height: 2;
-  color: var(--cf-warm-white);
-  opacity: 0.45;
-}
-
-/* Contact brand strip */
-
-.contact-brand-strip {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 64px 0;
-}
-
-.contact-brand-strip__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 24px;
+  margin-top: 48px;
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .contact-brand-strip__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
+  .contact-page__details {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
   }
 }
 
-.contact-brand-strip__label {
-  margin-bottom: 8px;
+.contact-page__detail-label {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--cf-lime);
 }
 
-.contact-brand-strip__text {
+.contact-page__detail-value {
+  margin-top: 4px;
   font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.75rem;
+  line-height: 1.5;
   color: var(--cf-warm-white);
-  opacity: 0.5;
+  opacity: 0.35;
 }
 
 /* ─────────────────────────────────────────────
