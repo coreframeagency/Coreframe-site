@@ -179,7 +179,7 @@ export function Hero() {
   return (
     <section className="hero" ref={heroRef}>
       <div className="hero__content">
-        <h1 className="hero__headline min-h-[6rem] md:min-h-[8.5rem]">
+        <h1 className="hero__headline">
           <span>{typedText}</span>
           <span
             className={`inline-block text-[var(--cf-lime)] ${headlineCursorClass}`}

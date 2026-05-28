@@ -18,7 +18,7 @@ export function Wordmark({ className = "" }: WordmarkProps) {
         width={1024}
         height={179}
         priority
-        className="h-[18px] w-auto md:h-[20px]"
+        className="wordmark h-[18px] w-auto bg-transparent md:h-[20px]"
       />
     </Link>
   );

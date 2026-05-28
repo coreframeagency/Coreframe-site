@@ -284,12 +284,14 @@ h6 {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
+  padding-top: 2rem;
   text-align: center;
 }
 
 .hero__headline {
   max-width: 900px;
   margin: 0 auto;
+  min-height: 1.2em;
   font-family: var(--font-display);
   font-size: 2rem;
   line-height: 1.15;
@@ -300,12 +302,13 @@ h6 {
 @media (min-width: 768px) {
   .hero__headline {
     font-size: 3.5rem;
+    min-height: 1.15em;
   }
 }
 
 .hero__subline-group {
   max-width: 36rem;
-  margin: 2.5rem auto 0;
+  margin: 24px auto 0;
 }
 
 .hero__subline {
@@ -1860,16 +1863,43 @@ h6 {
 .method-heading-wrap {
   display: block;
   width: 100%;
+  text-align: center;
 }
 
 .method-heading {
-  display: block;
-  width: 100%;
+  margin-bottom: 64px;
+}
+
+.method-heading__line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3em;
+  white-space: nowrap;
   font-family: var(--font-display);
   font-size: 2.5rem;
   line-height: 1.15;
   color: var(--cf-warm-white);
-  margin-bottom: 64px;
+}
+
+.method-heading__wordmark {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .method-heading__wordmark {
+    height: 1.05em;
+  }
+}
+
+.wordmark,
+.wordmark img,
+.method-heading__wordmark,
+.method-heading__wordmark img {
+  background: transparent !important;
 }
 
 .method-grid {

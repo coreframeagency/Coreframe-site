@@ -31,15 +31,17 @@ export function CoreframeMethod() {
       <div className="container">
         <Reveal className="method-heading-wrap">
           <h2 className="method-heading">
-            The{" "}
-            <Image
-              src="/wordmark.png"
-              alt="COREFRAME"
-              width={1024}
-              height={179}
-              className="inline-block h-6 w-auto align-middle md:h-8"
-            />{" "}
-            Method
+            <span className="method-heading__line">
+              The{" "}
+              <Image
+                src="/wordmark.png"
+                alt="coreframe."
+                width={1024}
+                height={179}
+                className="method-heading__wordmark"
+              />{" "}
+              Method
+            </span>
           </h2>
         </Reveal>
 
