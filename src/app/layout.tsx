@@ -5,14 +5,36 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: {
-    default: "COREFRAME — Systems / Strategy / Design",
-    template: "%s — COREFRAME",
-  },
+  title: "coreframe. — The frame your business is built on.",
   description:
-    "COREFRAME builds digital systems for business owners. Systems, strategy, and design — infrastructure that works, scales, and looks like it means business.",
+    "The frame your business is built on. We design and build the digital systems behind modern businesses. Full-stack web development, custom business systems, and operational infrastructure.",
+  metadataBase: new URL("https://coreframe.agency"),
+  openGraph: {
+    title: "coreframe. — The frame your business is built on.",
+    description:
+      "The frame your business is built on. We design and build the digital systems behind modern businesses.",
+    url: "https://coreframe.agency",
+    siteName: "coreframe.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "coreframe. — The frame your business is built on.",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "coreframe. — The frame your business is built on.",
+    description:
+      "The frame your business is built on. We design and build the digital systems behind modern businesses.",
+    images: ["/og-image.png"],
+  },
   icons: {
-    icon: "/favicon.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
   },
 };
 
