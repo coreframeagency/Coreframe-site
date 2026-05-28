@@ -53,7 +53,7 @@ export function Footer() {
 
         <div className="site-footer__copyright site-footer__copyright-row">
           <p>&copy; {year} COREFRAME. All rights reserved.</p>
-          <p>hello@coreframe.agency</p>
+          <p>coreframeagency@gmail.com</p>
         </div>
       </div>
     </footer>

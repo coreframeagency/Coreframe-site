@@ -16,7 +16,7 @@ const SERVICE_OPTIONS = [
 ] as const;
 
 const CONTACT_DETAILS = [
-  { label: "EMAIL", value: "hello@coreframe.agency" },
+  { label: "EMAIL", value: "coreframeagency@gmail.com" },
   { label: "BASED IN", value: "Colombo, Sri Lanka" },
   { label: "RESPONSE TIME", value: "Within 24 hours" },
 ] as const;
