@@ -7,34 +7,20 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "coreframe. — The frame your business is built on.",
   description:
-    "The frame your business is built on. We design and build the digital systems behind modern businesses. Full-stack web development, custom business systems, and operational infrastructure.",
-  metadataBase: new URL("https://coreframe.agency"),
+    "Full-stack web development and digital infrastructure for modern business operators. Systems, strategy, and design — built to scale.",
   openGraph: {
     title: "coreframe. — The frame your business is built on.",
     description:
-      "The frame your business is built on. We design and build the digital systems behind modern businesses.",
-    url: "https://coreframe.agency",
+      "Full-stack web development and digital infrastructure for modern business operators. Systems, strategy, and design — built to scale.",
+    url: "https://www.coreframe.agency",
     siteName: "coreframe.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "coreframe. — The frame your business is built on.",
-      },
-    ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "coreframe. — The frame your business is built on.",
     description:
-      "The frame your business is built on. We design and build the digital systems behind modern businesses.",
-    images: ["/og-image.png"],
-  },
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
+      "Full-stack web development and digital infrastructure for modern business operators. Systems, strategy, and design — built to scale.",
   },
 };
 
