@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "coreframe. — The frame your business is built on.",
   description:
     "Full-stack web development and digital infrastructure for modern business operators. Systems, strategy, and design — built to scale.",
+  metadataBase: new URL("https://www.coreframe.agency"),
   openGraph: {
     title: "coreframe. — The frame your business is built on.",
     description:
@@ -15,12 +16,25 @@ export const metadata: Metadata = {
     url: "https://www.coreframe.agency",
     siteName: "coreframe.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "coreframe. — The frame your business is built on.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "coreframe. — The frame your business is built on.",
     description:
       "Full-stack web development and digital infrastructure for modern business operators. Systems, strategy, and design — built to scale.",
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
   },
 };
 
