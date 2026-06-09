@@ -1870,16 +1870,48 @@ h6 {
   margin-bottom: 64px;
 }
 
+.method-heading-marquee {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.method-heading-marquee__track {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .method-heading__line {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.3em;
-  white-space: nowrap;
   font-family: var(--font-display);
   font-size: 2.5rem;
   line-height: 1.15;
   color: var(--cf-warm-white);
+}
+
+@media (max-width: 767px) {
+  .method-heading-marquee__track {
+    display: inline-block;
+    width: max-content;
+    white-space: nowrap;
+    animation: method-heading-marquee 16s linear infinite;
+  }
+
+  .method-heading__line {
+    white-space: nowrap;
+  }
+}
+
+@keyframes method-heading-marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .method-heading__wordmark {
@@ -1897,9 +1929,13 @@ h6 {
 
 .wordmark,
 .wordmark img,
+nav a:has(.wordmark),
+nav a:has(.wordmark) span,
 .method-heading__wordmark,
 .method-heading__wordmark img {
   background: transparent !important;
+  border: none;
+  padding: 0;
 }
 
 .method-grid {

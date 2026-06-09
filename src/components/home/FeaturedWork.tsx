@@ -21,7 +21,7 @@ const PROJECTS = [
 
 export function FeaturedWork() {
   return (
-    <section className="section bg-[var(--cf-canvas)]">
+    <section className="section">
       <div className="container">
         <Reveal>
           <p className="work-label">Selected Work</p>

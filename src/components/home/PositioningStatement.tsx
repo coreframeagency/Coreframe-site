@@ -2,7 +2,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export function PositioningStatement() {
   return (
-    <section className="section bg-[var(--cf-canvas)]">
+    <section className="section">
       <div className="container">
         <div className="positioning-block reveal-stagger">
           <Reveal>

@@ -6,7 +6,7 @@ import { SystemsClosing } from "./SystemsClosing";
 
 export function SystemsPageContent() {
   return (
-    <div className="systems-page bg-[var(--cf-canvas)]">
+    <div className="systems-page">
       <div className="container">
         <SystemsHeader />
         <SystemsIntro />

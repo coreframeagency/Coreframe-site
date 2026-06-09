@@ -27,21 +27,25 @@ const STEPS = [
 
 export function CoreframeMethod() {
   return (
-    <section className="section bg-[var(--cf-canvas)]">
+    <section className="section">
       <div className="container">
         <Reveal className="method-heading-wrap">
           <h2 className="method-heading">
-            <span className="method-heading__line">
-              The{" "}
-              <Image
-                src="/wordmark.png"
-                alt="coreframe."
-                width={1024}
-                height={179}
-                className="method-heading__wordmark"
-              />{" "}
-              Method
-            </span>
+            <div className="method-heading-marquee">
+              <div className="method-heading-marquee__track">
+                <span className="method-heading__line">
+                  The{" "}
+                  <Image
+                    src="/wordmark.png"
+                    alt="coreframe."
+                    width={1024}
+                    height={179}
+                    className="method-heading__wordmark"
+                  />{" "}
+                  Method
+                </span>
+              </div>
+            </div>
           </h2>
         </Reveal>
 

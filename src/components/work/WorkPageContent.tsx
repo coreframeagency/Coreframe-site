@@ -20,7 +20,7 @@ export function WorkPageContent() {
   }, []);
 
   return (
-    <div className="work-page bg-[var(--cf-canvas)]">
+    <div className="work-page">
       <div className="container">
         <WorkHeader />
 
