@@ -1918,24 +1918,12 @@ h6 {
   display: inline-block;
   height: 1em;
   width: auto;
-  background: transparent;
 }
 
 @media (min-width: 768px) {
   .method-heading__wordmark {
     height: 1.05em;
   }
-}
-
-.wordmark,
-.wordmark img,
-nav a:has(.wordmark),
-nav a:has(.wordmark) span,
-.method-heading__wordmark,
-.method-heading__wordmark img {
-  background: transparent !important;
-  border: none;
-  padding: 0;
 }
 
 .method-grid {

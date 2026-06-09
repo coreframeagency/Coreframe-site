@@ -9,7 +9,7 @@ export function Wordmark({ className = "" }: WordmarkProps) {
   return (
     <Link
       href="/"
-      className={`inline-flex shrink-0 items-center border-0 bg-transparent p-0 ${className}`}
+      className={`inline-flex shrink-0 items-center border-0 p-0 ${className}`}
       aria-label="COREFRAME — Home"
     >
       <Image
@@ -18,7 +18,7 @@ export function Wordmark({ className = "" }: WordmarkProps) {
         width={1024}
         height={179}
         priority
-        className="wordmark block h-[18px] w-auto bg-transparent md:h-[20px]"
+        className="wordmark block h-[18px] w-auto md:h-[20px]"
       />
     </Link>
   );
