@@ -3,8 +3,6 @@
 import { FormEvent, useState } from "react";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ProjectQualifier } from "./ProjectQualifier";
-import { CostEstimator } from "./CostEstimator";
-
 const WHATSAPP_NUMBER = "94XXXXXXXXX"; // Replace with real WhatsApp number
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgvobzg";
 
@@ -103,10 +101,6 @@ export function ContactCard() {
 
         <RevealOnScroll className="project-qualifier-wrap">
           <ProjectQualifier />
-        </RevealOnScroll>
-
-        <RevealOnScroll className="cost-estimator-wrap">
-          <CostEstimator />
         </RevealOnScroll>
 
         <div id="contact-form-card">

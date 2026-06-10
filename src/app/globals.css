@@ -116,7 +116,6 @@
   /* Z-index scale */
   --z-nav: 100;
   --z-overlay: 200;
-  --z-scroll-progress: 9997;
   --z-page-transition: 9998;
   --z-sticky-cta: 9996;
   --z-grain: 9999;
@@ -2496,8 +2495,10 @@ h6 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 580px;
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto;
+  padding-inline: 24px;
 }
 
 .contact-page__intro {
@@ -2783,6 +2784,7 @@ h6 {
 
 .contact-card {
   width: 100%;
+  max-width: 720px;
   background: #111111;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 28px;
@@ -2856,7 +2858,7 @@ h6 {
 }
 
 .contact-card__textarea {
-  min-height: 120px;
+  min-height: 140px;
   resize: vertical;
 }
 
@@ -3441,16 +3443,6 @@ h6 {
 .hero__headline-typed,
 .hero__headline-cursor {
   color: #a6ff00;
-}
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 1.5px;
-  z-index: var(--z-scroll-progress);
-  background: #a6ff00;
-  transition: width 0.1s linear;
 }
 
 .process-timeline__detail--home .process-timeline__detail-title {
