@@ -15,7 +15,7 @@ const STEPS = [
     question: "What is your timeline?",
     options: [
       { id: "6weeks", label: "I need this live within 6 weeks" },
-      { id: "2-3months", label: "2 to 3 months is fine" },
+      { id: "2-3months", label: "2–3 months is fine" },
       { id: "flexible", label: "Timeline is flexible" },
     ],
   },
@@ -23,17 +23,11 @@ const STEPS = [
     question: "What is your approximate budget?",
     options: [
       { id: "under150", label: "Under LKR 150,000" },
-      { id: "150-500", label: "LKR 150,000 to 500,000" },
-      { id: "500plus", label: "LKR 500,000 and above" },
+      { id: "150-500", label: "LKR 150,000 – 500,000" },
+      { id: "500plus", label: "LKR 500,000+" },
     ],
   },
 ] as const;
-
-const RECOMMENDATIONS: Record<string, string> = {
-  website: "COREFRAME Web Build",
-  webapp: "COREFRAME Custom System",
-  brand: "COREFRAME Full Stack",
-};
 
 export function ProjectQualifier() {
   const [step, setStep] = useState(0);
@@ -43,14 +37,16 @@ export function ProjectQualifier() {
 
   const handleSelect = (optionId: string) => {
     setSelected(optionId);
-  };
-
-  const handleNext = () => {
-    if (!selected) return;
-    const nextAnswers = [...answers, selected];
+    const nextAnswers = [...answers, optionId];
     setAnswers(nextAnswers);
     setSelected(null);
-    setStep((s) => s + 1);
+    setStep((current) => current + 1);
+  };
+
+  const handleRestart = () => {
+    setStep(0);
+    setAnswers([]);
+    setSelected(null);
   };
 
   const handleScrollToForm = () => {
@@ -58,22 +54,24 @@ export function ProjectQualifier() {
   };
 
   if (complete) {
-    const situation = answers[0] ?? "website";
     return (
       <div className="project-qualifier project-qualifier--result">
         <div className="project-qualifier__progress">
-          {STEPS.map((_, i) => (
-            <span key={i} className="project-qualifier__progress-bar is-filled" />
+          {STEPS.map((_, index) => (
+            <span key={index} className="project-qualifier__progress-dot is-filled" />
           ))}
         </div>
-        <p className="project-qualifier__result-heading">
-          Based on your answers, you are a strong fit for COREFRAME.
-        </p>
-        <p className="project-qualifier__result-rec">
-          {RECOMMENDATIONS[situation] ?? RECOMMENDATIONS.website}
+        <p className="project-qualifier__result-copy">
+          Based on your answers, you are a strong fit for{" "}
+          <span className="project-qualifier__result-highlight">COREFRAME Custom Build</span>.
+          We will map your system architecture first, then design and ship the full stack. → Start
+          a project and we will send you a system brief within 24 hours.
         </p>
         <button type="button" className="project-qualifier__cta" onClick={handleScrollToForm}>
           Start a project →
+        </button>
+        <button type="button" className="project-qualifier__restart" onClick={handleRestart}>
+          Start over
         </button>
       </div>
     );
@@ -84,10 +82,10 @@ export function ProjectQualifier() {
   return (
     <div className="project-qualifier">
       <div className="project-qualifier__progress">
-        {STEPS.map((_, i) => (
+        {STEPS.map((_, index) => (
           <span
-            key={i}
-            className={`project-qualifier__progress-bar ${i < step ? "is-filled" : ""}`}
+            key={index}
+            className={`project-qualifier__progress-dot ${index < step ? "is-filled" : ""}`}
           />
         ))}
       </div>
@@ -98,22 +96,12 @@ export function ProjectQualifier() {
             key={option.id}
             type="button"
             className={`project-qualifier__option ${selected === option.id ? "is-selected" : ""}`}
-            style={{
-              minHeight: "56px",
-              display: "flex",
-              alignItems: "center",
-            }}
             onClick={() => handleSelect(option.id)}
           >
             {option.label}
           </button>
         ))}
       </div>
-      {selected && (
-        <button type="button" className="project-qualifier__next" onClick={handleNext}>
-          Continue →
-        </button>
-      )}
     </div>
   );
 }

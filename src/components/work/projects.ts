@@ -1,6 +1,11 @@
+export type BeforeAfterRow = {
+  before: string;
+  after: string;
+  highlight: string;
+};
+
 export type BeforeAfter = {
-  before: [string, string, string];
-  after: [string, string, string];
+  rows: [BeforeAfterRow, BeforeAfterRow, BeforeAfterRow];
 };
 
 export type Project = {
@@ -19,51 +24,60 @@ export type Project = {
 
 export const PROJECT_BEFORE_AFTER_BY_HOST: Record<string, BeforeAfter> = {
   "epiccampus.live": {
-    before: [
-      "Manual enrolment via WhatsApp",
-      "No CMS, changes needed a developer",
-      "Zero visibility on revenue or students",
-    ],
-    after: [
-      "Automated student portal with payments",
-      "Full CMS, owner controls everything",
-      "Live dashboard with real-time data",
+    rows: [
+      {
+        before: "Manual enrolment via WhatsApp",
+        after: "Automated student portal with payments",
+        highlight: "Automated",
+      },
+      {
+        before: "No CMS — changes needed a developer",
+        after: "Full CMS — owner controls everything",
+        highlight: "Full CMS",
+      },
+      {
+        before: "Zero visibility on revenue or students",
+        after: "Live dashboard with real-time data",
+        highlight: "Live",
+      },
     ],
   },
   "raicurujp.com": {
-    before: [
-      "No web presence in English or Japanese",
-      "Enquiries handled via email and phone only",
-      "No digital brand identity",
-    ],
-    after: [
-      "Bilingual-ready site with full brand system",
-      "Contact and enquiry system built in",
-      "First international digital presence shipped",
+    rows: [
+      {
+        before: "Paper-based logistics tracking",
+        after: "Full digital logistics platform",
+        highlight: "Full digital",
+      },
+      {
+        before: "No digital client interface",
+        after: "Client portal with live tracking",
+        highlight: "live tracking",
+      },
+      {
+        before: "Manual quote and booking process",
+        after: "Automated quote and booking system",
+        highlight: "Automated",
+      },
     ],
   },
   "abeyskitchen.com": {
-    before: [
-      "Orders taken manually via phone and WhatsApp",
-      "No inventory or order tracking",
-      "No online payment system",
-    ],
-    after: [
-      "Full e-commerce stack with cart and checkout",
-      "Inventory management and order tracking built in",
-      "Stripe payments integrated end to end",
-    ],
-  },
-  "kiefdot.com": {
-    before: [
-      "No brand system or visual identity",
-      "Temporary placeholder site",
-      "No clear positioning or messaging",
-    ],
-    after: [
-      "Complete brand identity system delivered",
-      "Full web presence built and live",
-      "Positioning and messaging architected from scratch",
+    rows: [
+      {
+        before: "No online ordering",
+        after: "Full e-commerce stack live",
+        highlight: "Full e-commerce",
+      },
+      {
+        before: "Manual inventory tracking",
+        after: "Automated inventory management",
+        highlight: "Automated",
+      },
+      {
+        before: "No customer data or analytics",
+        after: "Customer analytics and order history",
+        highlight: "Customer",
+      },
     ],
   },
 };

@@ -20,6 +20,7 @@ export const SYSTEMS_TABS = [
   { id: "systems", label: "SYSTEMS" },
   { id: "strategy", label: "STRATEGY" },
   { id: "design", label: "DESIGN" },
+  { id: "roi", label: "ROI" },
   { id: "stack", label: "STACK CALCULATOR" },
 ] as const;
 

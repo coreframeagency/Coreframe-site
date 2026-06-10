@@ -7,6 +7,7 @@ import { SystemsAudit } from "./SystemsAudit";
 import { DesignSlider } from "./DesignSlider";
 import { LiveDashboard } from "./LiveDashboard";
 import { StackCalculator } from "./StackCalculator";
+import { ROICalculator } from "./ROICalculator";
 
 export function SystemsTabs() {
   const [activeTab, setActiveTab] = useState<SystemsTabId>("systems");
@@ -37,6 +38,7 @@ export function SystemsTabs() {
           {activeTab === "systems" && <LiveDashboard />}
           {activeTab === "strategy" && <SystemsAudit />}
           {activeTab === "design" && <DesignSlider />}
+          {activeTab === "roi" && <ROICalculator />}
           {activeTab === "stack" && <StackCalculator />}
         </div>
       </div>

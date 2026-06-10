@@ -4,6 +4,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ProofBar } from "@/components/ui/ProofBar";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { StickyCTA } from "@/components/ui/StickyCTA";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -48,12 +50,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <ScrollProgress />
         <CustomCursor />
         <PageTransition />
         <Nav />
         <ProofBar />
         <main className="site-main">{children}</main>
         <Footer />
+        <StickyCTA />
       </body>
     </html>
   );

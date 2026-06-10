@@ -60,7 +60,7 @@ export function Footer() {
               </div>
             </div>
             <span className="site-footer__availability-badge site-footer__availability-badge--amber">
-              NEARLY FULL
+              LIMITED
             </span>
           </div>
           <div className="site-footer__availability-row">
