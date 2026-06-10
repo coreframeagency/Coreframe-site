@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ProofBar } from "@/components/ui/ProofBar";
+import { PageTransition } from "@/components/ui/PageTransition";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,8 +49,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <CustomCursor />
+        <PageTransition />
         <Nav />
-        <main className="pt-[var(--nav-height)]">{children}</main>
+        <ProofBar />
+        <main className="site-main">{children}</main>
         <Footer />
       </body>
     </html>

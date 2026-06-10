@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Reveal } from "@/components/ui/Reveal";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { MagneticCard } from "@/components/ui/MagneticCard";
 
 const PROJECTS = [
   {
@@ -23,27 +24,27 @@ export function FeaturedWork() {
   return (
     <section className="section">
       <div className="container">
-        <Reveal>
+        <RevealOnScroll>
           <p className="work-label">Selected Work</p>
-        </Reveal>
+        </RevealOnScroll>
 
-        <div className="work-grid reveal-stagger">
+        <RevealOnScroll stagger className="work-grid">
           {PROJECTS.map((project) => (
-            <Reveal key={project.name} className="h-full">
-              <Link href="/work" className="project-card">
+            <MagneticCard key={project.name} className="h-full">
+              <Link href="/work" className="project-card" data-cursor="hover">
                 <h3 className="project-card__name">{project.name}</h3>
                 <p className="project-card__category">{project.category}</p>
                 <p className="project-card__description">{project.description}</p>
               </Link>
-            </Reveal>
+            </MagneticCard>
           ))}
-        </div>
+        </RevealOnScroll>
 
-        <Reveal>
+        <RevealOnScroll>
           <Link href="/work" className="work-view-all">
             View all work →
           </Link>
-        </Reveal>
+        </RevealOnScroll>
       </div>
     </section>
   );

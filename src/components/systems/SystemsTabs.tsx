@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { SYSTEMS_TABS, type SystemsTabId } from "./constants";
 import { SystemsAudit } from "./SystemsAudit";
 import { DesignSlider } from "./DesignSlider";
@@ -11,7 +12,7 @@ export function SystemsTabs() {
   const [activeTab, setActiveTab] = useState<SystemsTabId>("systems");
 
   return (
-    <section className="systems-tabs">
+    <RevealOnScroll className="systems-tabs">
       <div
         className="systems-tabs__bar"
         role="tablist"
@@ -39,6 +40,6 @@ export function SystemsTabs() {
           {activeTab === "stack" && <StackCalculator />}
         </div>
       </div>
-    </section>
+    </RevealOnScroll>
   );
 }

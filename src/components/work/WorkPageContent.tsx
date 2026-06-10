@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { Reveal } from "@/components/ui/Reveal";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { MagneticCard } from "@/components/ui/MagneticCard";
+import { WorkReel } from "@/components/ui/WorkReel";
 import { WorkHeader } from "./WorkHeader";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
-import { PROJECTS, PROJECT_REVEAL_DELAYS } from "./projects";
+import { PROJECTS } from "./projects";
 import type { Project } from "./projects";
 
 export function WorkPageContent() {
@@ -24,13 +26,15 @@ export function WorkPageContent() {
       <div className="container">
         <WorkHeader />
 
-        <div className="work-page-grid">
-          {PROJECTS.map((project, index) => (
-            <Reveal key={project.id} delay={PROJECT_REVEAL_DELAYS[index]}>
-              <ProjectCard project={project} onViewDetails={handleViewDetails} />
-            </Reveal>
+        <WorkReel>
+          {PROJECTS.map((project) => (
+            <RevealOnScroll key={project.id} className="work-reel__card-wrap">
+              <MagneticCard>
+                <ProjectCard project={project} onViewDetails={handleViewDetails} />
+              </MagneticCard>
+            </RevealOnScroll>
           ))}
-        </div>
+        </WorkReel>
       </div>
 
       <ProjectModal project={selectedProject} onClose={handleCloseModal} />

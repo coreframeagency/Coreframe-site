@@ -2,22 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
-const HEADLINE = "Your business runs on broken systems.";
+const HEADLINE_PREFIX = "Your business runs on ";
+const CYCLING_PHRASES = [
+  "broken systems.",
+  "manual workflows.",
+  "outdated infrastructure.",
+] as const;
 const SUBLINE = "We build the infrastructure that fixes that.";
 const TYPING_SPEED = 45;
+const DELETE_SPEED = 30;
+const PHRASE_PAUSE = 1800;
 const PRE_TYPE_DELAY = 600;
 const CURSOR_HOLD = 400;
 const CURSOR_FADE = 300;
 
-type Phase =
+type SublinePhase =
   | "waiting"
   | "typing"
   | "cursor-hold"
   | "cursor-fade"
-  | "subline-typing"
-  | "subline-cursor-hold"
-  | "subline-cursor-fade"
   | "cta"
   | "done";
 
@@ -34,137 +39,124 @@ function getCursorClass(
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const [phase, setPhase] = useState<Phase>("waiting");
-  const [typedText, setTypedText] = useState("");
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [typedPhrase, setTypedPhrase] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showPhraseCursor, setShowPhraseCursor] = useState(true);
+
+  const [sublinePhase, setSublinePhase] = useState<SublinePhase>("waiting");
   const [typedSubline, setTypedSubline] = useState("");
-  const [cursorBlinking, setCursorBlinking] = useState(true);
-  const [cursorFading, setCursorFading] = useState(false);
   const [sublineCursorBlinking, setSublineCursorBlinking] = useState(true);
   const [sublineCursorFading, setSublineCursorFading] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
 
   useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
+    const timer = window.setTimeout(() => {
+      setSublinePhase("typing");
+    }, PRE_TYPE_DELAY);
 
-    timers.push(
-      setTimeout(() => {
-        setPhase("typing");
-      }, PRE_TYPE_DELAY),
-    );
-
-    return () => timers.forEach(clearTimeout);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
-    if (phase !== "typing") return;
+    const currentPhrase = CYCLING_PHRASES[phraseIndex];
+    let intervalId: number | undefined;
+    let pauseTimeout: number | undefined;
+    let active = true;
 
-    if (typedText.length >= HEADLINE.length) {
-      setCursorBlinking(false);
-      setPhase("cursor-hold");
-      return;
+    function startTyping() {
+      intervalId = window.setInterval(() => {
+        if (!active) return;
+
+        setTypedPhrase((prev) => {
+          if (!isDeleting) {
+            if (prev.length < currentPhrase.length) {
+              return currentPhrase.slice(0, prev.length + 1);
+            }
+
+            if (intervalId) window.clearInterval(intervalId);
+            pauseTimeout = window.setTimeout(() => {
+              if (active) setIsDeleting(true);
+            }, PHRASE_PAUSE);
+            return prev;
+          }
+
+          if (prev.length > 0) {
+            return currentPhrase.slice(0, prev.length - 1);
+          }
+
+          if (intervalId) window.clearInterval(intervalId);
+          setIsDeleting(false);
+          setPhraseIndex((index) => (index + 1) % CYCLING_PHRASES.length);
+          return prev;
+        });
+      }, isDeleting ? DELETE_SPEED : TYPING_SPEED);
     }
 
-    const timer = setTimeout(() => {
-      setTypedText(HEADLINE.slice(0, typedText.length + 1));
-    }, TYPING_SPEED);
-
-    return () => clearTimeout(timer);
-  }, [phase, typedText]);
-
-  useEffect(() => {
-    if (phase !== "cursor-hold") return;
-
-    const holdTimer = setTimeout(() => {
-      setPhase("cursor-fade");
-    }, CURSOR_HOLD);
-
-    return () => clearTimeout(holdTimer);
-  }, [phase]);
-
-  useEffect(() => {
-    if (phase !== "cursor-fade") return;
-
-    const fadeFrame = requestAnimationFrame(() => {
-      setCursorFading(true);
-    });
-
-    const sublineStartTimer = setTimeout(() => {
-      setPhase("subline-typing");
-    }, CURSOR_FADE);
+    startTyping();
 
     return () => {
-      cancelAnimationFrame(fadeFrame);
-      clearTimeout(sublineStartTimer);
+      active = false;
+      if (intervalId) window.clearInterval(intervalId);
+      if (pauseTimeout) window.clearTimeout(pauseTimeout);
     };
-  }, [phase]);
+  }, [phraseIndex, isDeleting]);
 
   useEffect(() => {
-    if (phase !== "subline-typing") return;
+    if (sublinePhase !== "typing") return;
 
     if (typedSubline.length >= SUBLINE.length) {
       setSublineCursorBlinking(false);
-      setPhase("subline-cursor-hold");
+      setSublinePhase("cursor-hold");
       return;
     }
 
-    const timer = setTimeout(() => {
+    const timer = window.setTimeout(() => {
       setTypedSubline(SUBLINE.slice(0, typedSubline.length + 1));
     }, TYPING_SPEED);
 
-    return () => clearTimeout(timer);
-  }, [phase, typedSubline]);
+    return () => window.clearTimeout(timer);
+  }, [sublinePhase, typedSubline]);
 
   useEffect(() => {
-    if (phase !== "subline-cursor-hold") return;
+    if (sublinePhase !== "cursor-hold") return;
 
-    const holdTimer = setTimeout(() => {
-      setPhase("subline-cursor-fade");
+    const holdTimer = window.setTimeout(() => {
+      setSublinePhase("cursor-fade");
     }, CURSOR_HOLD);
 
-    return () => clearTimeout(holdTimer);
-  }, [phase]);
+    return () => window.clearTimeout(holdTimer);
+  }, [sublinePhase]);
 
   useEffect(() => {
-    if (phase !== "subline-cursor-fade") return;
+    if (sublinePhase !== "cursor-fade") return;
 
     const fadeFrame = requestAnimationFrame(() => {
       setSublineCursorFading(true);
     });
 
-    const ctaTimer = setTimeout(() => {
+    const ctaTimer = window.setTimeout(() => {
       setCtaVisible(true);
-      setPhase("cta");
+      setSublinePhase("cta");
     }, CURSOR_FADE);
 
     return () => {
       cancelAnimationFrame(fadeFrame);
-      clearTimeout(ctaTimer);
+      window.clearTimeout(ctaTimer);
     };
-  }, [phase]);
+  }, [sublinePhase]);
 
   useEffect(() => {
-    if (phase !== "cta") return;
+    if (sublinePhase !== "cta") return;
 
-    const doneTimer = setTimeout(() => setPhase("done"), 600);
-    return () => clearTimeout(doneTimer);
-  }, [phase]);
-
-  const showHeadlineCursor =
-    phase === "waiting" ||
-    phase === "typing" ||
-    phase === "cursor-hold" ||
-    phase === "cursor-fade";
+    const doneTimer = window.setTimeout(() => setSublinePhase("done"), 600);
+    return () => window.clearTimeout(doneTimer);
+  }, [sublinePhase]);
 
   const showSublineCursor =
-    phase === "subline-typing" ||
-    phase === "subline-cursor-hold" ||
-    phase === "subline-cursor-fade";
-
-  const headlineCursorClass = getCursorClass(
-    showHeadlineCursor,
-    cursorBlinking,
-    cursorFading,
-  );
+    sublinePhase === "typing" ||
+    sublinePhase === "cursor-hold" ||
+    sublinePhase === "cursor-fade";
 
   const sublineCursorClass = getCursorClass(
     showSublineCursor,
@@ -178,15 +170,21 @@ export function Hero() {
 
   return (
     <section className="hero" ref={heroRef}>
-      <div className="hero__content">
+      <RevealOnScroll className="hero__content">
         <h1 className="hero__headline">
-          <span>{typedText}</span>
-          <span
-            className={`inline-block text-[var(--cf-lime)] ${headlineCursorClass}`}
-            aria-hidden="true"
-          >
-            |
+          <span className="hero__headline-prefix">{HEADLINE_PREFIX}</span>
+          <span className="hero__headline-typed" style={{ color: "#A6FF00" }}>
+            {typedPhrase}
           </span>
+          {showPhraseCursor ? (
+            <span
+              className="hero__headline-cursor animate-[hero-cursor-blink_1s_step-end_infinite]"
+              style={{ color: "#A6FF00" }}
+              aria-hidden="true"
+            >
+              |
+            </span>
+          ) : null}
         </h1>
 
         <div className="hero__subline-group">
@@ -207,7 +205,7 @@ export function Hero() {
             See our work →
           </Link>
         </div>
-      </div>
+      </RevealOnScroll>
 
       <button
         type="button"

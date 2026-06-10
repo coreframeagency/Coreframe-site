@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 const WHATSAPP_NUMBER = "94XXXXXXXXX"; // Replace with real WhatsApp number
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgvobzg";
@@ -98,7 +99,7 @@ export function ContactCard() {
           </p>
         </header>
 
-        <div className="contact-card">
+        <RevealOnScroll className="contact-card">
           {status === "success" ? (
             <div className="contact-card__success" aria-live="polite">
               <span className="contact-card__success-check" aria-hidden="true">
@@ -211,7 +212,7 @@ export function ContactCard() {
               </button>
             </form>
           )}
-        </div>
+        </RevealOnScroll>
 
         <div className="contact-page__details">
           {CONTACT_DETAILS.map((detail) => (

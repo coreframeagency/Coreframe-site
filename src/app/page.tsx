@@ -3,6 +3,7 @@ import { PositioningStatement } from "@/components/home/PositioningStatement";
 import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { CoreframeMethod } from "@/components/home/CoreframeMethod";
 import { FooterCtaStrip } from "@/components/home/FooterCtaStrip";
+import { StatsStrip } from "@/components/ui/StatsStrip";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <Hero />
       <PositioningStatement />
       <FeaturedWork />
+      <StatsStrip />
       <CoreframeMethod />
       <FooterCtaStrip />
     </>

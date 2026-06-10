@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/Wordmark";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { NAV_LINKS } from "@/lib/navigation";
 import { SOCIAL_LINKS } from "@/lib/social-links";
 
@@ -8,7 +9,7 @@ export function Footer() {
 
   return (
     <footer className="site-footer">
-      <div className="container">
+      <RevealOnScroll className="container">
         <div className="site-footer__top">
           <div className="site-footer__brand">
             <Wordmark />
@@ -55,7 +56,7 @@ export function Footer() {
           <p>&copy; {year} COREFRAME. All rights reserved.</p>
           <p>coreframeagency@gmail.com</p>
         </div>
-      </div>
+      </RevealOnScroll>
     </footer>
   );
 }
