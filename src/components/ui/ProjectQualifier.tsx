@@ -98,6 +98,11 @@ export function ProjectQualifier() {
             key={option.id}
             type="button"
             className={`project-qualifier__option ${selected === option.id ? "is-selected" : ""}`}
+            style={{
+              minHeight: "56px",
+              display: "flex",
+              alignItems: "center",
+            }}
             onClick={() => handleSelect(option.id)}
           >
             {option.label}

@@ -171,8 +171,10 @@ export function Hero() {
   return (
     <section className="hero" ref={heroRef}>
       <RevealOnScroll className="hero__content">
-        <h1 className="hero__headline">
-          <span className="hero__headline-prefix">{HEADLINE_PREFIX}</span>
+        <h1 className="hero__headline" style={{ color: "#F5F3EB" }}>
+          <span className="hero__headline-prefix" style={{ color: "#F5F3EB" }}>
+            {HEADLINE_PREFIX}
+          </span>
           <span className="hero__headline-typed" style={{ color: "#A6FF00" }}>
             {typedPhrase}
           </span>

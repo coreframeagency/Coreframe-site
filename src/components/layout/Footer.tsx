@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
-import { NAV_LINKS } from "@/lib/navigation";
 import { SOCIAL_LINKS } from "@/lib/social-links";
 
 export function Footer() {
@@ -38,18 +36,6 @@ export function Footer() {
               )}
             </nav>
           </div>
-
-          <nav className="site-footer__nav" aria-label="Footer navigation">
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="nav-link text-sm text-[var(--cf-warm-white)]/60 transition-colors hover:text-[var(--cf-warm-white)]"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
         </div>
 
         <div className="site-footer__availability">
