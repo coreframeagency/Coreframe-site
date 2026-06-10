@@ -3,6 +3,25 @@
 import { useEffect, useState } from "react";
 import type { Project } from "./projects";
 
+const PILLAR_SECTIONS = [
+  {
+    label: "SYSTEMS",
+    body: "We map the full operation before writing a line of code. Architecture, workflows, and infrastructure designed as one connected whole.",
+  },
+  {
+    label: "STRATEGY",
+    body: "We define what to build and why before touching the interface. Discovery, positioning, and a clear system blueprint first.",
+  },
+  {
+    label: "DESIGN",
+    body: "Every screen is designed with intent. Interface, identity, and experience as one system.",
+  },
+] as const;
+
+function projectHref(url: string) {
+  return url.startsWith("http") ? url : `https://${url}`;
+}
+
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
@@ -74,25 +93,27 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         </h2>
 
         {project.url ? (
-          <p className="work-modal__url">{project.url}</p>
+          <a
+            href={projectHref(project.url)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="work-modal__visit text-[#A6FF00] text-sm font-medium hover:underline"
+          >
+            Visit site →
+          </a>
         ) : (
           <div className="work-modal__url-spacer" />
         )}
 
-        <div className="work-modal__section">
-          <p className="work-modal__label">The Problem</p>
-          <p className="work-modal__body">{project.problem}</p>
-        </div>
-
-        <div className="work-modal__section">
-          <p className="work-modal__label">What We Built</p>
-          <p className="work-modal__body">{project.built}</p>
-        </div>
-
-        <div className="work-modal__section work-modal__section--last">
-          <p className="work-modal__label">The Result</p>
-          <p className="work-modal__body">{project.result}</p>
-        </div>
+        {PILLAR_SECTIONS.map((section, index) => (
+          <div
+            key={section.label}
+            className={`work-modal__section ${index === PILLAR_SECTIONS.length - 1 ? "work-modal__section--last" : ""}`}
+          >
+            <p className="work-modal__label">{section.label}</p>
+            <p className="work-modal__body">{section.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

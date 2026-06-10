@@ -8,7 +8,7 @@ import { LiveDashboard } from "./LiveDashboard";
 import { StackCalculator } from "./StackCalculator";
 
 export function SystemsTabs() {
-  const [activeTab, setActiveTab] = useState<SystemsTabId>("strategy");
+  const [activeTab, setActiveTab] = useState<SystemsTabId>("systems");
 
   return (
     <section className="systems-tabs">
@@ -33,9 +33,9 @@ export function SystemsTabs() {
 
       <div className="systems-tabs__panel" role="tabpanel">
         <div key={activeTab} className="systems-tabs__content">
+          {activeTab === "systems" && <LiveDashboard />}
           {activeTab === "strategy" && <SystemsAudit />}
           {activeTab === "design" && <DesignSlider />}
-          {activeTab === "build" && <LiveDashboard />}
           {activeTab === "stack" && <StackCalculator />}
         </div>
       </div>

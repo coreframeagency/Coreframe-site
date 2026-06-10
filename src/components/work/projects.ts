@@ -15,7 +15,7 @@ export const PROJECTS: Project[] = [
   {
     id: "abeys-kitchen",
     name: "Abeys Kitchen",
-    url: "abeyskitchen.com",
+    url: "https://abeyskitchen.com",
     category: "E-Commerce",
     tag: "E-COMMERCE",
     year: "2024",
@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
   {
     id: "kiefdot",
     name: "Kiefdot",
-    url: "kiefdot.com",
+    url: "https://kiefdot.com",
     category: "Brand & Web",
     tag: "BRAND & WEB",
     year: "2024",
@@ -46,7 +46,7 @@ export const PROJECTS: Project[] = [
   {
     id: "epicielts",
     name: "EpicIELTS",
-    url: "epicielts.live",
+    url: "https://epiccampus.live",
     category: "Education / AI",
     tag: "EDUCATION / AI",
     year: "2024",

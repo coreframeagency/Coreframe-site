@@ -13,8 +13,8 @@ export function Footer() {
           <div className="site-footer__brand">
             <Wordmark />
             <p className="text-tagline">
-              Systems <span style={{ color: "#A6FF00" }}>/</span> Strategy{" "}
-              <span style={{ color: "#A6FF00" }}>/</span> Design
+              SYSTEMS <span className="slash">/</span> STRATEGY{" "}
+              <span className="slash">/</span> DESIGN
             </p>
             <nav className="site-footer__social" aria-label="Social media">
               {SOCIAL_LINKS.map(({ label, href, placeholder }) =>

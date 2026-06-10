@@ -718,9 +718,9 @@ h6 {
 .work-modal__meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-bottom: 20px;
+  padding-right: 40px;
 }
 
 .work-modal__tag {
@@ -747,12 +747,13 @@ h6 {
   color: #f5f3eb;
 }
 
-.work-modal__url {
+.work-modal__visit {
+  display: inline-block;
   margin-top: 8px;
   margin-bottom: 32px;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: #a6ff00;
+  background: none;
+  border: none;
+  text-decoration: none;
 }
 
 .work-modal__url-spacer {

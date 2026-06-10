@@ -1,25 +1,25 @@
 export const SERVICE_LAYERS = [
   {
+    title: "SYSTEMS",
+    description:
+      "We map the full operation before writing a line of code. Architecture, workflows, and infrastructure designed as one connected whole.",
+  },
+  {
     title: "STRATEGY",
     description:
-      "We map the system before touching the interface. Discovery, architecture, and roadmap first.",
+      "We define what to build and why before touching the interface. Discovery, positioning, and a clear system blueprint first.",
   },
   {
     title: "DESIGN",
     description:
       "Every screen is designed with intent. Interface, identity, and experience as one system.",
   },
-  {
-    title: "BUILD",
-    description:
-      "We ship full-stack. Front to back, integrated and deployed. Things that actually work.",
-  },
 ] as const;
 
 export const SYSTEMS_TABS = [
+  { id: "systems", label: "SYSTEMS" },
   { id: "strategy", label: "STRATEGY" },
   { id: "design", label: "DESIGN" },
-  { id: "build", label: "BUILD" },
   { id: "stack", label: "STACK CALCULATOR" },
 ] as const;
 
