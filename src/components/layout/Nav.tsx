@@ -31,6 +31,7 @@ function NavLink({
 export function Nav() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -52,6 +53,22 @@ export function Nav() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
+  useEffect(() => {
+    function handleScroll() {
+      const scrollHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
+      setScrollProgress(Math.min(1, Math.max(0, progress)));
+    }
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [pathname]);
+
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
@@ -62,6 +79,15 @@ export function Nav() {
       className="fixed inset-x-0 top-0 z-[var(--z-nav)] bg-[#0B0B0B]"
       style={{ height: "var(--nav-height)" }}
     >
+      <div
+        className="absolute inset-x-0 bottom-0 h-[1.5px] bg-transparent"
+        aria-hidden="true"
+      >
+        <div
+          className="h-full bg-[#A6FF00]"
+          style={{ width: `${scrollProgress * 100}%` }}
+        />
+      </div>
       <div className="container flex h-full w-full items-center justify-between">
         <Wordmark />
 

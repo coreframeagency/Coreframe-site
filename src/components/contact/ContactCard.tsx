@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { ProjectQualifier } from "@/components/ui/ProjectQualifier";
 
 const WHATSAPP_NUMBER = "94XXXXXXXXX"; // Replace with real WhatsApp number
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgvobzg";
@@ -99,6 +100,11 @@ export function ContactCard() {
           </p>
         </header>
 
+        <RevealOnScroll className="project-qualifier-wrap">
+          <ProjectQualifier />
+        </RevealOnScroll>
+
+        <div id="contact-form-card">
         <RevealOnScroll className="contact-card">
           {status === "success" ? (
             <div className="contact-card__success" aria-live="polite">
@@ -213,6 +219,7 @@ export function ContactCard() {
             </form>
           )}
         </RevealOnScroll>
+        </div>
 
         <div className="contact-page__details">
           {CONTACT_DETAILS.map((detail) => (

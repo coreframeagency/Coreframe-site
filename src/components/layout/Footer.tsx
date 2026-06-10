@@ -52,6 +52,45 @@ export function Footer() {
           </nav>
         </div>
 
+        <div className="site-footer__availability">
+          <div className="site-footer__availability-row">
+            <div className="site-footer__availability-left">
+              <span className="site-footer__availability-dot site-footer__availability-dot--green" />
+              <div>
+                <p className="site-footer__availability-label">Taking new projects</p>
+                <p className="site-footer__availability-sub">Updated June 2026</p>
+              </div>
+            </div>
+            <span className="site-footer__availability-badge site-footer__availability-badge--amber">
+              LIMITED
+            </span>
+          </div>
+          <div className="site-footer__availability-row">
+            <div className="site-footer__availability-left">
+              <span className="site-footer__availability-dot site-footer__availability-dot--amber" />
+              <div>
+                <p className="site-footer__availability-label">Current capacity</p>
+                <p className="site-footer__availability-sub">1 slot remaining this quarter</p>
+              </div>
+            </div>
+            <span className="site-footer__availability-badge site-footer__availability-badge--amber">
+              NEARLY FULL
+            </span>
+          </div>
+          <div className="site-footer__availability-row">
+            <div className="site-footer__availability-left">
+              <span className="site-footer__availability-dot site-footer__availability-dot--green" />
+              <div>
+                <p className="site-footer__availability-label">Response time</p>
+                <p className="site-footer__availability-sub">Typically within 24 hours</p>
+              </div>
+            </div>
+            <span className="site-footer__availability-badge site-footer__availability-badge--lime">
+              FAST
+            </span>
+          </div>
+        </div>
+
         <div className="site-footer__copyright site-footer__copyright-row">
           <p>&copy; {year} COREFRAME. All rights reserved.</p>
           <p>coreframeagency@gmail.com</p>

@@ -1,3 +1,8 @@
+export type BeforeAfter = {
+  before: [string, string, string];
+  after: [string, string, string];
+};
+
 export type Project = {
   id: string;
   name: string;
@@ -9,7 +14,70 @@ export type Project = {
   problem: string;
   built: string;
   result: string;
+  beforeAfter?: BeforeAfter;
 };
+
+export const PROJECT_BEFORE_AFTER_BY_HOST: Record<string, BeforeAfter> = {
+  "epiccampus.live": {
+    before: [
+      "Manual enrolment via WhatsApp",
+      "No CMS, changes needed a developer",
+      "Zero visibility on revenue or students",
+    ],
+    after: [
+      "Automated student portal with payments",
+      "Full CMS, owner controls everything",
+      "Live dashboard with real-time data",
+    ],
+  },
+  "raicurujp.com": {
+    before: [
+      "No web presence in English or Japanese",
+      "Enquiries handled via email and phone only",
+      "No digital brand identity",
+    ],
+    after: [
+      "Bilingual-ready site with full brand system",
+      "Contact and enquiry system built in",
+      "First international digital presence shipped",
+    ],
+  },
+  "abeyskitchen.com": {
+    before: [
+      "Orders taken manually via phone and WhatsApp",
+      "No inventory or order tracking",
+      "No online payment system",
+    ],
+    after: [
+      "Full e-commerce stack with cart and checkout",
+      "Inventory management and order tracking built in",
+      "Stripe payments integrated end to end",
+    ],
+  },
+  "kiefdot.com": {
+    before: [
+      "No brand system or visual identity",
+      "Temporary placeholder site",
+      "No clear positioning or messaging",
+    ],
+    after: [
+      "Complete brand identity system delivered",
+      "Full web presence built and live",
+      "Positioning and messaging architected from scratch",
+    ],
+  },
+};
+
+export function getProjectBeforeAfter(project: Project): BeforeAfter | null {
+  if (project.beforeAfter) return project.beforeAfter;
+  if (!project.url) return null;
+  try {
+    const host = new URL(project.url).hostname.replace(/^www\./, "");
+    return PROJECT_BEFORE_AFTER_BY_HOST[host] ?? null;
+  } catch {
+    return null;
+  }
+}
 
 export const PROJECTS: Project[] = [
   {

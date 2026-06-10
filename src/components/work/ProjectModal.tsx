@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Project } from "./projects";
+import { BeforeAfterStrip } from "./BeforeAfterStrip";
+import { getProjectBeforeAfter, type Project } from "./projects";
 
 const PILLAR_SECTIONS = [
   {
@@ -61,6 +62,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   if (!project) return null;
 
+  const beforeAfter = getProjectBeforeAfter(project);
+
   return (
     <div
       className={`work-modal-overlay ${isVisible ? "is-open" : ""}`}
@@ -108,12 +111,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         {PILLAR_SECTIONS.map((section, index) => (
           <div
             key={section.label}
-            className={`work-modal__section ${index === PILLAR_SECTIONS.length - 1 ? "work-modal__section--last" : ""}`}
+            className={`work-modal__section ${index === PILLAR_SECTIONS.length - 1 && !beforeAfter ? "work-modal__section--last" : ""}`}
           >
             <p className="work-modal__label">{section.label}</p>
             <p className="work-modal__body">{section.body}</p>
           </div>
         ))}
+
+        {beforeAfter ? <BeforeAfterStrip data={beforeAfter} /> : null}
       </div>
     </div>
   );
