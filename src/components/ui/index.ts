@@ -4,7 +4,6 @@ export { PageTransition } from "./PageTransition";
 export { ProofBar } from "./ProofBar";
 export { Reveal } from "./Reveal";
 export { RevealOnScroll } from "./RevealOnScroll";
-export { ScrollProgress } from "./ScrollProgress";
 export { StatsStrip } from "./StatsStrip";
 export { StickyCTA } from "./StickyCTA";
 export { WorkReel } from "./WorkReel";
