@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
-const HEADLINE_PREFIX = "Your business runs on ";
+const HEADLINE_STATIC = "Your business runs on";
 const CYCLING_PHRASES = [
   "broken systems.",
   "manual workflows.",
@@ -171,22 +171,28 @@ export function Hero() {
   return (
     <section className="hero" ref={heroRef}>
       <RevealOnScroll className="hero__content">
-        <h1 className="hero__headline" style={{ color: "#F5F3EB" }}>
-          <span className="hero__headline-prefix" style={{ color: "#F5F3EB" }}>
-            {HEADLINE_PREFIX}
+        <h1 className="hero__headline">
+          <span
+            className="hero__headline-static"
+            style={{ display: "block", color: "#F5F3EB" }}
+          >
+            {HEADLINE_STATIC}
           </span>
-          <span className="hero__headline-typed" style={{ color: "#A6FF00" }}>
+          <span
+            className="hero__headline-typed"
+            style={{ display: "block", color: "#A6FF00" }}
+          >
             {typedPhrase}
+            {showPhraseCursor ? (
+              <span
+                className="hero__headline-cursor animate-[hero-cursor-blink_1s_step-end_infinite]"
+                style={{ color: "#A6FF00" }}
+                aria-hidden="true"
+              >
+                |
+              </span>
+            ) : null}
           </span>
-          {showPhraseCursor ? (
-            <span
-              className="hero__headline-cursor animate-[hero-cursor-blink_1s_step-end_infinite]"
-              style={{ color: "#A6FF00" }}
-              aria-hidden="true"
-            >
-              |
-            </span>
-          ) : null}
         </h1>
 
         <div className="hero__subline-group">

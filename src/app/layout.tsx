@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { ProofBar } from "@/components/ui/ProofBar";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { StickyCTA } from "@/components/ui/StickyCTA";
@@ -54,8 +53,7 @@ export default function RootLayout({
         <CustomCursor />
         <PageTransition />
         <Nav />
-        <ProofBar />
-        <main className="site-main">{children}</main>
+        <main className="pt-[var(--nav-height)]">{children}</main>
         <Footer />
         <StickyCTA />
       </body>
