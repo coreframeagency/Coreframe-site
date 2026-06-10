@@ -95,7 +95,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {project.name}
         </h2>
 
-        {project.url ? (
+        {project.url && project.status !== "in-development" ? (
           <a
             href={projectHref(project.url)}
             target="_blank"

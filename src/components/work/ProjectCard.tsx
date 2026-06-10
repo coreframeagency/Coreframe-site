@@ -13,9 +13,24 @@ export function ProjectCard({ project, onViewDetails }: ProjectCardProps) {
         <span className="work-project-card__year">{project.year}</span>
       </div>
 
+      {project.status === "in-development" ? (
+        <p
+          style={{
+            margin: "0 0 8px",
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
+            fontSize: "10px",
+            color: "#555",
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+          }}
+        >
+          In Development
+        </p>
+      ) : null}
+
       <h2 className="work-project-card__name">{project.name}</h2>
 
-      {project.url ? (
+      {project.url && project.status !== "in-development" ? (
         <p className="work-project-card__url">{project.url}</p>
       ) : null}
 

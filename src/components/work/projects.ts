@@ -19,6 +19,7 @@ export type Project = {
   problem: string;
   built: string;
   result: string;
+  status?: "in-development";
   beforeAfter?: BeforeAfter;
 };
 
@@ -94,6 +95,54 @@ export function getProjectBeforeAfter(project: Project): BeforeAfter | null {
 }
 
 export const PROJECTS: Project[] = [
+  {
+    id: "epiccampus",
+    name: "epiccampus.live",
+    url: "https://epiccampus.live",
+    category: "Education Platform",
+    tag: "EDUCATION PLATFORM",
+    year: "2025",
+    headline:
+      "A full campus taken entirely digital. Learning management, CMS, student portals, accounts, payments, and business operations unified into one system.",
+    problem:
+      "The campus ran entirely on manual processes — enrolment via WhatsApp, no CMS, no visibility on revenue or student data.",
+    built:
+      "Full-stack education platform with LMS, automated student portal, payment integration, CMS for staff, and a live operations dashboard.",
+    result: "Every campus process digitised and operating as one connected system.",
+  },
+  {
+    id: "kidneypartner",
+    name: "kidneypartner.online",
+    url: "https://kidneypartner.online",
+    category: "Medical System",
+    tag: "MEDICAL SYSTEM",
+    year: "2025",
+    headline:
+      "A system built to facilitate kidney paired donation — a practice used in developed countries to match incompatible donor-recipient pairs with compatible ones across a network.",
+    problem:
+      "No digital infrastructure existed locally to manage paired donation matching. The process was entirely manual and inaccessible.",
+    built:
+      "A paired donation matching system with donor and recipient management, compatibility logic, and case tracking.",
+    result:
+      "A working medical infrastructure system for a practice previously unavailable in the region.",
+    status: "in-development",
+  },
+  {
+    id: "raicurujp",
+    name: "raicurujp.com",
+    url: "https://raicurujp.com",
+    category: "Logistics",
+    tag: "LOGISTICS",
+    year: "2025",
+    headline:
+      "Full design and build for a Japanese logistics company. Our first international client — brand, interface, and system delivered end to end.",
+    problem:
+      "The company had no digital presence and needed a full web system built to Japanese market standards.",
+    built:
+      "Complete brand identity, full website design and build, bilingual-ready interface, and logistics service architecture.",
+    result:
+      "A production-ready digital presence for an international logistics operation.",
+  },
   {
     id: "abeys-kitchen",
     name: "Abeys Kitchen",
