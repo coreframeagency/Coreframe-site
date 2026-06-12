@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ProjectsTable } from "@/components/admin/ProjectsTable";
 
+export const dynamic = "force-dynamic";
+
 export default function ProjectsPage() {
   return (
     <>

@@ -3,6 +3,8 @@ import { Wordmark } from "@/components/brand/Wordmark";
 import { StartForm } from "@/components/start/StartForm";
 import "../admin/admin.css";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Start a Project",
   description: "Submit a project brief to COREFRAME. We map, design, build, and operate digital systems.",

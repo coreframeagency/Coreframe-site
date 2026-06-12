@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SystemsPageContent } from "@/components/systems";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Systems",
   description:

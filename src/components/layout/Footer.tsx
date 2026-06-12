@@ -3,10 +3,16 @@ import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { AvailabilityIndicator } from "@/components/admin/AvailabilityIndicator";
 import { getSiteSettings } from "@/lib/site-settings";
 import { SOCIAL_LINKS } from "@/lib/social-links";
+import type { AvailabilityStatus } from "@prisma/client";
 
 export async function Footer() {
   const year = new Date().getFullYear();
-  const settings = await getSiteSettings();
+  let settings = { availability: "OPEN" as AvailabilityStatus };
+  try {
+    settings = await getSiteSettings();
+  } catch {
+    // database not available during build
+  }
 
   return (
     <footer className="site-footer">

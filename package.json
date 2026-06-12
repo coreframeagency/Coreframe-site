@@ -10,14 +10,11 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.8.0",
-    "@prisma/client": "^7.8.0",
+    "@prisma/client": "^6.19.3",
     "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^12.10.0",
-    "dotenv": "^17.4.2",
     "next": "^15.3.3",
-    "prisma": "^7.8.0",
+    "prisma": "^6.19.3",
     "puppeteer": "^25.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

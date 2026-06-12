@@ -1,10 +1,12 @@
-import type { NextConfig } from "next";
-
+import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
-  devIndicators: {
-    position: "bottom-right",
+  serverExternalPackages: ["@prisma/client", "prisma"],
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60,
   },
-  turbopack: {},
-};
-
-export default nextConfig;
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+}
+export default nextConfig

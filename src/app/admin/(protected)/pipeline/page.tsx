@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { PipelineBoard } from "@/components/admin/PipelineBoard";
 
+export const dynamic = "force-dynamic";
+
 export default function PipelinePage() {
   return (
     <>

@@ -8,6 +8,8 @@ import { formatCurrency, formatDate } from "@/lib/admin-types";
 import { prisma } from "@/lib/prisma";
 import "../../admin/admin.css";
 
+export const dynamic = "force-dynamic";
+
 type PageProps = { params: Promise<{ clientId: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

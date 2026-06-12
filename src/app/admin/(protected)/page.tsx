@@ -1,6 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { DashboardClient } from "@/components/admin/DashboardClient";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardPage() {
   const [invoices, quotations, leads, recentDocuments, recentLeads] = await Promise.all([
     prisma.document.findMany({ where: { type: "INVOICE" } }),

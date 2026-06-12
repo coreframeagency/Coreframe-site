@@ -4,6 +4,8 @@ import { DocumentViewer } from "@/components/admin/DocumentViewer";
 import { prisma } from "@/lib/prisma";
 import "../../admin/admin.css";
 
+export const dynamic = "force-dynamic";
+
 type PageProps = {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ pdf?: string }>;
