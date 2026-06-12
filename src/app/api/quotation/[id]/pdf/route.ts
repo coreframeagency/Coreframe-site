@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 import { prisma } from "@/lib/prisma";
 
+export const maxDuration = 60;
+export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -11,8 +14,10 @@ async function generatePdf(documentId: string, type: "invoice" | "quotation") {
   const url = `${siteUrl}/${type}/${documentId}?pdf=true`;
 
   const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: { width: 1920, height: 1080 },
+    executablePath: await chromium.executablePath(),
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
   try {
