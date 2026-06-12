@@ -4,7 +4,7 @@ import { SystemsPageContent } from "@/components/systems";
 export const metadata: Metadata = {
   title: "Systems",
   description:
-    "How COREFRAME works — strategy, design, and build as a unified system.",
+    "How COREFRAME approaches systems thinking, strategy, and design. Explore our method and tools.",
 };
 
 export default function SystemsPage() {

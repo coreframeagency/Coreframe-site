@@ -33,6 +33,10 @@ yarn-error.log*
 # env files
 .env*
 
+# database
+/prisma/dev.db
+/dev.db
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

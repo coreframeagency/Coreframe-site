@@ -4,7 +4,7 @@ import { WorkPageContent } from "@/components/work";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected projects from COREFRAME — e-commerce, brand, education, and internal systems.",
+    "Selected systems built by COREFRAME — education platforms, logistics systems, e-commerce, and web applications.",
 };
 
 export default function WorkPage() {
