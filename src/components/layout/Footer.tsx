@@ -1,9 +1,12 @@
 import { Wordmark } from "@/components/brand/Wordmark";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { AvailabilityIndicator } from "@/components/admin/AvailabilityIndicator";
+import { getSiteSettings } from "@/lib/site-settings";
 import { SOCIAL_LINKS } from "@/lib/social-links";
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const settings = await getSiteSettings();
 
   return (
     <footer className="site-footer">
@@ -19,7 +22,6 @@ export function Footer() {
               {SOCIAL_LINKS.map(({ label, href, placeholder }) =>
                 placeholder ? (
                   <a key={label} href={href} className="site-footer__social-link">
-                    {/* LinkedIn URL TBD */}
                     {label}
                   </a>
                 ) : (
@@ -38,44 +40,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="site-footer__availability">
-          <div className="site-footer__availability-row">
-            <div className="site-footer__availability-left">
-              <span className="site-footer__availability-dot site-footer__availability-dot--green" />
-              <div>
-                <p className="site-footer__availability-label">Taking new projects</p>
-                <p className="site-footer__availability-sub">Updated June 2026</p>
-              </div>
-            </div>
-            <span className="site-footer__availability-badge site-footer__availability-badge--amber">
-              LIMITED
-            </span>
-          </div>
-          <div className="site-footer__availability-row">
-            <div className="site-footer__availability-left">
-              <span className="site-footer__availability-dot site-footer__availability-dot--amber" />
-              <div>
-                <p className="site-footer__availability-label">Current capacity</p>
-                <p className="site-footer__availability-sub">1 slot remaining this quarter</p>
-              </div>
-            </div>
-            <span className="site-footer__availability-badge site-footer__availability-badge--amber">
-              LIMITED
-            </span>
-          </div>
-          <div className="site-footer__availability-row">
-            <div className="site-footer__availability-left">
-              <span className="site-footer__availability-dot site-footer__availability-dot--green" />
-              <div>
-                <p className="site-footer__availability-label">Response time</p>
-                <p className="site-footer__availability-sub">Typically within 24 hours</p>
-              </div>
-            </div>
-            <span className="site-footer__availability-badge site-footer__availability-badge--lime">
-              FAST
-            </span>
-          </div>
-        </div>
+        <AvailabilityIndicator status={settings.availability} />
 
         <div className="site-footer__copyright site-footer__copyright-row">
           <p>&copy; {year} COREFRAME. All rights reserved.</p>

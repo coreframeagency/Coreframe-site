@@ -20,6 +20,7 @@ type DocumentRow = {
 type DocumentListProps = {
   type: "INVOICE" | "QUOTATION";
   title: string;
+  initialFilter?: string;
 };
 
 const INVOICE_TABS = [
@@ -38,10 +39,14 @@ const QUOTATION_TABS = [
   { key: "DECLINED", label: "Declined" },
 ] as const;
 
-export function DocumentList({ type, title }: DocumentListProps) {
+export function DocumentList({ type, title, initialFilter = "all" }: DocumentListProps) {
   const [documents, setDocuments] = useState<DocumentRow[]>([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState(initialFilter);
   const tabs = type === "INVOICE" ? INVOICE_TABS : QUOTATION_TABS;
+
+  useEffect(() => {
+    setFilter(initialFilter);
+  }, [initialFilter]);
 
   useEffect(() => {
     fetch("/api/admin/documents")

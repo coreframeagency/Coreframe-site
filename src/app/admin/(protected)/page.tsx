@@ -1,17 +1,17 @@
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { formatCurrency, formatDate } from "@/lib/admin-types";
-import { StatusPill } from "@/components/admin/StatusPill";
+import { DashboardClient } from "@/components/admin/DashboardClient";
 
 export default async function AdminDashboardPage() {
-  const [invoices, quotations, recentDocuments] = await Promise.all([
+  const [invoices, quotations, leads, recentDocuments, recentLeads] = await Promise.all([
     prisma.document.findMany({ where: { type: "INVOICE" } }),
     prisma.document.findMany({ where: { type: "QUOTATION" } }),
+    prisma.lead.findMany(),
     prisma.document.findMany({
-      take: 10,
+      take: 6,
       orderBy: { createdAt: "desc" },
       include: { client: true },
     }),
+    prisma.lead.findMany({ take: 6, orderBy: { createdAt: "desc" } }),
   ]);
 
   const outstanding = invoices
@@ -22,59 +22,33 @@ export default async function AdminDashboardPage() {
     .filter((doc) => doc.status === "PAID")
     .reduce((sum, doc) => sum + doc.total, 0);
 
-  const stats = [
-    { label: "Total Invoices", value: invoices.length },
-    { label: "Total Quotations", value: quotations.length },
-    { label: "Outstanding", value: formatCurrency(outstanding, "LKR") },
-    { label: "Paid", value: formatCurrency(paidTotal, "LKR") },
-  ];
+  const pipelineValue = leads
+    .filter((lead) => lead.status !== "WON" && lead.status !== "LOST")
+    .reduce((sum, lead) => sum + (lead.value ?? 0), 0);
+
+  const closedLeads = leads.filter((lead) => lead.status === "WON" || lead.status === "LOST");
+  const wonLeads = leads.filter((lead) => lead.status === "WON");
+  const winRate =
+    closedLeads.length > 0 ? Math.round((wonLeads.length / closedLeads.length) * 100) : 0;
+
+  const overdueCount = invoices.filter((doc) => doc.status === "OVERDUE").length;
 
   return (
-    <>
-      <h1 className="admin-page-title">Dashboard</h1>
-      <div className="admin-stats">
-        {stats.map((stat) => (
-          <div key={stat.label} className="admin-stat-card">
-            <div className="admin-stat-card__value">{stat.value}</div>
-            <div className="admin-stat-card__label">{stat.label}</div>
-          </div>
-        ))}
-      </div>
-
-      <div className="admin-table-wrap">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Type</th>
-              <th>Client</th>
-              <th>Project</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentDocuments.map((doc) => (
-              <tr key={doc.id}>
-                <td>
-                  <Link href={`/admin/documents/${doc.id}`} className="admin-btn--link">
-                    {doc.number}
-                  </Link>
-                </td>
-                <td>{doc.type}</td>
-                <td>{doc.client.name}</td>
-                <td>{doc.projectName}</td>
-                <td>{formatCurrency(doc.total, doc.currency)}</td>
-                <td>
-                  <StatusPill status={doc.status} />
-                </td>
-                <td>{formatDate(doc.createdAt)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+    <DashboardClient
+      data={{
+        invoiceCount: invoices.length,
+        quotationCount: quotations.length,
+        pipelineValue,
+        outstanding,
+        paidTotal,
+        winRate,
+        overdueCount,
+        recentDocuments: recentDocuments.map((doc) => ({
+          ...doc,
+          createdAt: doc.createdAt.toISOString(),
+        })),
+        recentLeads,
+      }}
+    />
   );
 }

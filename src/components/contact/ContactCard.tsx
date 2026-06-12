@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ProjectQualifier } from "./ProjectQualifier";
+import { ContactIntakeShort } from "./ContactIntakeShort";
 const WHATSAPP_NUMBER = "94XXXXXXXXX"; // Replace with real WhatsApp number
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgvobzg";
 
@@ -101,6 +102,10 @@ export function ContactCard() {
 
         <RevealOnScroll className="project-qualifier-wrap">
           <ProjectQualifier />
+        </RevealOnScroll>
+
+        <RevealOnScroll>
+          <ContactIntakeShort />
         </RevealOnScroll>
 
         <div id="contact-form-card">

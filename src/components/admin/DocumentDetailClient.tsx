@@ -25,9 +25,59 @@ type DocumentDetail = {
 export function DocumentDetailActions({ document }: { document: DocumentDetail }) {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const [invoiceNumber, setInvoiceNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [emailPreview, setEmailPreview] = useState<{
+    recipient: string;
+    subject: string;
+    previewHtml: string;
+  } | null>(null);
+  const [emailLoading, setEmailLoading] = useState(false);
+
+  async function openEmailPreview() {
+    setEmailLoading(true);
+    setError("");
+    try {
+      const response = await fetch(`/api/admin/documents/${document.id}/send`);
+      if (!response.ok) {
+        setError("Failed to load email preview");
+        return;
+      }
+      const data = (await response.json()) as {
+        recipient: string;
+        subject: string;
+        previewHtml: string;
+      };
+      setEmailPreview(data);
+      setShowEmailModal(true);
+    } catch {
+      setError("Failed to load email preview");
+    } finally {
+      setEmailLoading(false);
+    }
+  }
+
+  async function confirmSendEmail() {
+    setEmailLoading(true);
+    setError("");
+    try {
+      const response = await fetch(`/api/admin/documents/${document.id}/send`, {
+        method: "POST",
+      });
+      if (!response.ok) {
+        setError("Failed to send email");
+        return;
+      }
+      setShowEmailModal(false);
+      router.refresh();
+    } catch {
+      setError("Failed to send email");
+    } finally {
+      setEmailLoading(false);
+    }
+  }
 
   async function handleConvert() {
     setLoading(true);
@@ -64,6 +114,14 @@ export function DocumentDetailActions({ document }: { document: DocumentDetail }
         <a href={publicUrl} target="_blank" rel="noopener noreferrer" className="admin-btn admin-btn--ghost">
           View public page
         </a>
+        <button
+          type="button"
+          className="admin-btn admin-btn--primary"
+          onClick={openEmailPreview}
+          disabled={emailLoading}
+        >
+          Send Email
+        </button>
         {document.type === "QUOTATION" && document.status === "ACCEPTED" ? (
           <button
             type="button"
@@ -75,8 +133,42 @@ export function DocumentDetailActions({ document }: { document: DocumentDetail }
         ) : null}
       </div>
 
+      {showEmailModal && emailPreview ? (
+        <div className="admin-modal admin-modal--animated">
+          <div className="admin-modal__panel admin-modal__panel--wide">
+            <h2 className="admin-page-title" style={{ fontSize: "1.25rem" }}>
+              Send email
+            </h2>
+            <p className="admin-table__mono">To: {emailPreview.recipient}</p>
+            <p className="admin-table__mono">Subject: {emailPreview.subject}</p>
+            <div
+              className="admin-email-preview"
+              dangerouslySetInnerHTML={{ __html: emailPreview.previewHtml }}
+            />
+            {error ? <p className="admin-login__error">{error}</p> : null}
+            <div style={{ display: "flex", gap: 8, marginTop: 16 }}>
+              <button
+                type="button"
+                className="admin-btn admin-btn--primary"
+                onClick={confirmSendEmail}
+                disabled={emailLoading}
+              >
+                {emailLoading ? "Sending…" : "Confirm Send"}
+              </button>
+              <button
+                type="button"
+                className="admin-btn admin-btn--ghost"
+                onClick={() => setShowEmailModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       {showModal ? (
-        <div className="admin-modal">
+        <div className="admin-modal admin-modal--animated">
           <div className="admin-modal__panel">
             <h2 className="admin-page-title" style={{ fontSize: "1.25rem" }}>
               Convert to invoice

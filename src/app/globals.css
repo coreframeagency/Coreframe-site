@@ -2459,6 +2459,14 @@ h6 {
   color: #a6ff00;
 }
 
+.site-footer__availability-badge--dim {
+  color: #555;
+}
+
+.site-footer__availability-dot--dim {
+  background: #555;
+}
+
 .site-footer__copyright {
   margin-top: 2rem;
   font-size: 0.75rem;

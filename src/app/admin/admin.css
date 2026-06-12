@@ -98,7 +98,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #1f1f1f;
+  border-right: 0.5px solid #1f1f1f;
   background: #0b0b0b;
   padding: 24px 0;
 }
@@ -120,11 +120,13 @@
   display: block;
   padding: 12px 24px;
   font-family: var(--font-body);
-  font-size: 0.875rem;
-  color: rgba(245, 243, 235, 0.7);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
   text-decoration: none;
-  border-left: 2px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  border-left: 0 solid transparent;
+  transition: color 0.15s ease, border-width 0.15s ease, background 0.15s ease;
 }
 
 .admin-sidebar__link:hover {
@@ -133,7 +135,8 @@
 
 .admin-sidebar__link.is-active {
   color: #f5f3eb;
-  border-left-color: #a6ff00;
+  border-left: 2px solid #a6ff00;
+  background: #0f0f0f;
 }
 
 .admin-sidebar__footer {
@@ -170,13 +173,18 @@
   flex: 1;
   padding: 32px;
   min-width: 0;
+  background: #0d0d0d;
 }
 
 .admin-page-title {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 32px;
   margin: 0 0 24px;
   color: #f5f3eb;
+}
+
+.admin-page-title--hero {
+  font-size: 40px;
 }
 
 .admin-stats {
@@ -189,7 +197,8 @@
 .admin-stat-card {
   padding: 24px;
   background: #0b0b0b;
-  border: 1px solid #1f1f1f;
+  border: 0.5px solid #1f1f1f;
+  border-radius: 4px;
 }
 
 .admin-stat-card__value {
@@ -202,15 +211,17 @@
 .admin-stat-card__label {
   margin-top: 8px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #555;
 }
 
 .admin-table-wrap {
-  border: 1px solid #1f1f1f;
+  border: 0.5px solid #1f1f1f;
+  border-radius: 4px;
   overflow-x: auto;
+  background: #0b0b0b;
 }
 
 .admin-table {
@@ -239,7 +250,8 @@
 }
 
 .admin-table tr:hover td {
-  background: #111;
+  background: #0f0f0f;
+  transition: background 0.15s ease;
 }
 
 .admin-table tr.is-clickable {
@@ -394,13 +406,50 @@
 .admin-btn--primary {
   background: #a6ff00;
   color: #0b0b0b;
-  font-weight: 600;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 10px 20px;
 }
 
 .admin-btn--ghost {
   background: transparent;
-  border: 1px solid #1f1f1f;
+  border: 0.5px solid #1f1f1f;
   color: #f5f3eb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 10px 20px;
+  transition: border-color 0.15s ease;
+}
+
+.admin-btn--ghost:hover {
+  border-color: #a6ff00;
+}
+
+.admin-btn--danger {
+  background: transparent;
+  border: 0.5px solid #333;
+  color: #555;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 10px 20px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.admin-btn--danger:hover {
+  border-color: #ff4444;
+  color: #ff4444;
 }
 
 .admin-btn--link {
@@ -448,11 +497,95 @@
 }
 
 .admin-slideover__panel {
-  width: 400px;
+  width: 480px;
   max-width: 100%;
   background: #0b0b0b;
-  border-left: 1px solid #1f1f1f;
+  border-left: 0.5px solid #1f1f1f;
   padding: 24px;
+  overflow-y: auto;
+  animation: admin-slide-in 0.25s ease;
+}
+
+@keyframes admin-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.admin-modal--animated .admin-modal__panel {
+  animation: admin-modal-in 0.2s ease;
+}
+
+@keyframes admin-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.admin-animate-card {
+  animation: admin-card-in 0.4s ease forwards;
+  opacity: 0;
+}
+
+.admin-animate-row {
+  animation: admin-row-in 0.4s ease forwards;
+  opacity: 0;
+}
+
+.admin-animate-fade {
+  animation: admin-fade-in 0.4s ease forwards;
+  opacity: 0;
+}
+
+@keyframes admin-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes admin-row-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes admin-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.admin-modal__panel--wide {
+  max-width: 640px;
+}
+
+.admin-email-preview {
+  margin-top: 16px;
+  border: 0.5px solid #1f1f1f;
+  border-radius: 4px;
+  overflow: hidden;
+  max-height: 320px;
   overflow-y: auto;
 }
 
@@ -735,11 +868,15 @@
 
 body:has(.doc-page) header.fixed,
 body:has(.doc-page) footer,
-body:has(.doc-page) .sticky-cta {
+body:has(.doc-page) .sticky-cta,
+body:has(.start-page) header.fixed,
+body:has(.start-page) footer,
+body:has(.start-page) .sticky-cta {
   display: none !important;
 }
 
-body:has(.doc-page) main {
+body:has(.doc-page) main,
+body:has(.start-page) main {
   padding-top: 0 !important;
 }
 
@@ -755,4 +892,531 @@ body:has(.admin-login) .sticky-cta {
 body:has(.admin-shell) main,
 body:has(.admin-login) main {
   padding-top: 0 !important;
+}
+
+/* Phase 2 — dashboard extensions */
+.admin-sidebar__group {
+  margin-bottom: 8px;
+}
+
+.admin-sidebar__group-label {
+  padding: 8px 24px 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+  margin: 0;
+}
+
+.admin-stats--six {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-stat-card__line {
+  margin-top: 16px;
+  height: 0.5px;
+  background: rgba(166, 255, 0, 0.24);
+}
+
+.admin-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #a6ff00;
+  margin: 0 0 16px;
+}
+
+.admin-panel {
+  margin-bottom: 32px;
+}
+
+.admin-dashboard-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.admin-quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-table__name {
+  font-family: var(--font-display);
+}
+
+.admin-table__mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+}
+
+.admin-table__lime {
+  color: #a6ff00;
+}
+
+.admin-overdue-banner {
+  padding: 16px 24px;
+  margin-bottom: 24px;
+  border-left: 3px solid #f5a623;
+  background: #0f0e0a;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: #f5f3eb;
+}
+
+.admin-overdue-banner a {
+  color: #a6ff00;
+}
+
+/* Lead & phase pills */
+.admin-lead-pill,
+.admin-phase-pill {
+  display: inline-block;
+  padding: 4px 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.admin-lead-pill--new {
+  background: #1f1f1f;
+  color: #555;
+}
+
+.admin-lead-pill--qualified {
+  background: #1a2a1a;
+  color: #a6ff00;
+}
+
+.admin-lead-pill--proposal {
+  background: #1f1f1f;
+  color: #f5f3eb;
+}
+
+.admin-lead-pill--won {
+  background: #a6ff00;
+  color: #0b0b0b;
+}
+
+.admin-lead-pill--lost {
+  background: #1f1f1f;
+  color: #333;
+}
+
+.admin-availability-dot--pulse {
+  animation: admin-pulse 2s ease infinite;
+}
+
+@keyframes admin-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+body:has(.portal-page) header.fixed,
+body:has(.portal-page) footer,
+body:has(.portal-page) .sticky-cta {
+  display: none !important;
+}
+
+body:has(.portal-page) main {
+  padding-top: 0 !important;
+}
+
+.admin-phase-pill--map {
+  background: #1f1f1f;
+  color: #f5f3eb;
+}
+
+.admin-phase-pill--design {
+  background: rgba(166, 255, 0, 0.15);
+  color: #a6ff00;
+}
+
+.admin-phase-pill--build {
+  background: #a6ff00;
+  color: #0b0b0b;
+}
+
+.admin-phase-pill--operate {
+  background: #333;
+  color: #f5f3eb;
+}
+
+/* Pipeline kanban */
+.admin-kanban-totals {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.admin-kanban-total {
+  padding: 16px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+}
+
+.admin-kanban-total__label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.admin-kanban-total__value {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #a6ff00;
+}
+
+.admin-kanban {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  align-items: start;
+}
+
+.admin-kanban__column {
+  min-width: 0;
+  border: 1px solid #1f1f1f;
+  background: #0b0b0b;
+}
+
+.admin-kanban__header {
+  padding: 12px 16px;
+  border-bottom: 1px solid #1f1f1f;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.admin-kanban__cards {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 120px;
+}
+
+.admin-kanban__card {
+  padding: 16px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.admin-kanban__card:hover {
+  border-color: #a6ff00;
+}
+
+.admin-kanban__card-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.admin-kanban__card-meta {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  color: #555;
+}
+
+.admin-slideover__panel--wide {
+  width: 480px;
+}
+
+.admin-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-detail-field__label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.admin-detail-field__value {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(245, 243, 235, 0.85);
+}
+
+/* Phase tracker */
+.admin-phase-tracker {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-phase-tracker__step {
+  flex: 1;
+  min-width: 80px;
+  padding: 16px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+  text-align: center;
+  cursor: pointer;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245, 243, 235, 0.5);
+}
+
+.admin-phase-tracker__step.is-active {
+  border-color: #a6ff00;
+  color: #a6ff00;
+}
+
+.admin-phase-tracker__step.is-complete {
+  color: #f5f3eb;
+}
+
+.admin-phase-tracker--readonly .admin-phase-tracker__step {
+  cursor: default;
+}
+
+/* Sprint log feed */
+.admin-sprint-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-sprint-item {
+  padding: 16px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+}
+
+.admin-sprint-item__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.admin-sprint-item__date {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.admin-sprint-item__body {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(245, 243, 235, 0.7);
+  line-height: 1.5;
+}
+
+.admin-project-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Availability admin */
+.admin-availability-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.admin-availability-card {
+  padding: 24px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+  cursor: pointer;
+  text-align: left;
+}
+
+.admin-availability-card.is-selected {
+  border-color: #a6ff00;
+}
+
+.admin-availability-card__title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.admin-availability-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(245, 243, 235, 0.6);
+}
+
+.admin-availability-preview {
+  padding: 24px;
+  border: 1px solid #1f1f1f;
+}
+
+/* Revenue */
+.admin-revenue-forecast {
+  margin-top: 32px;
+}
+
+.admin-revenue-month--current td {
+  background: rgba(166, 255, 0, 0.06) !important;
+}
+
+/* Start form */
+.start-page {
+  min-height: 100vh;
+  background: #0b0b0b;
+  color: #f5f3eb;
+  padding: 48px 24px;
+}
+
+.start-page__inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.start-form__progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.start-form__progress-dot {
+  flex: 1;
+  height: 2px;
+  background: #1f1f1f;
+}
+
+.start-form__progress-dot.is-filled {
+  background: #a6ff00;
+}
+
+.start-form__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin: 0 0 8px;
+}
+
+.start-form__subtitle {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: rgba(245, 243, 235, 0.6);
+  margin: 0 0 32px;
+}
+
+.start-form__tiles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.start-form__tile {
+  padding: 16px 24px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+  color: #f5f3eb;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.start-form__tile:hover,
+.start-form__tile.is-selected {
+  border-color: #a6ff00;
+}
+
+.start-form__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.start-form__success {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.start-form__success-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: #a6ff00;
+  margin-bottom: 16px;
+}
+
+/* Contact intake short */
+.intake-short {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.intake-short__tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.intake-short__tile {
+  padding: 16px;
+  border: 1px solid #1f1f1f;
+  background: #111;
+  color: #f5f3eb;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.intake-short__tile.is-selected {
+  border-color: #a6ff00;
+}
+
+@media (max-width: 1200px) {
+  .admin-kanban,
+  .admin-kanban-totals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-dashboard-columns,
+  .admin-project-layout,
+  .admin-availability-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-stats--six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-kanban,
+  .admin-kanban-totals {
+    grid-template-columns: 1fr;
+  }
 }
