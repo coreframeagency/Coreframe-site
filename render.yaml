@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: coreframe
-    env: node
-    buildCommand: npm install && npx prisma generate && npm run build
-    startCommand: npm start
-    envVars:
-      - key: PUPPETEER_CACHE_DIR
-        value: /opt/render/.cache/puppeteer
