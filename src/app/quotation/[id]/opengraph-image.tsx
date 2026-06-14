@@ -41,9 +41,9 @@ function DocumentOgImage({
       >
         <img
           src="https://coreframe.agency/logo-og.png"
-          width={200}
-          height={35}
-          style={{ objectFit: "contain", objectPosition: "left" }}
+          width={180}
+          height={32}
+          style={{ objectFit: "contain", objectPosition: "left center" }}
           alt="coreframe."
         />
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>

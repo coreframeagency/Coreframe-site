@@ -1,12 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import path from "path";
 import { prisma } from "@/lib/prisma";
 import { renderToBuffer, Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
-
-const logoPath = path.join(process.cwd(), "public", "logo-og.png");
 
 const styles = StyleSheet.create({
   page: {
@@ -173,7 +170,7 @@ export async function GET(
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
             <View>
-              <Image src={logoPath} style={styles.logo} />
+              <Image src="public/logo-og.png" style={styles.logo} />
             </View>
             <View>
               <Text style={styles.invoiceLabel}>QUOTATION</Text>
