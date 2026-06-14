@@ -19,16 +19,57 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     include: { client: true },
   });
 
+  const ogImageUrl = `https://coreframe.agency/invoice/${id}/opengraph-image`;
+
   if (!document || document.type !== "INVOICE") {
-    return { title: "Invoice" };
+    return {
+      title: "Invoice — coreframe.",
+      description: "Your invoice from coreframe. agency.",
+      metadataBase: new URL("https://coreframe.agency"),
+      openGraph: {
+        title: "Invoice — coreframe.",
+        description: "Your invoice from coreframe. agency.",
+        url: `https://coreframe.agency/invoice/${id}`,
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: "coreframe. Invoice",
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Invoice — coreframe.",
+        images: [ogImageUrl],
+      },
+    };
   }
 
   return {
-    title: document.number,
+    title: `${document.number} — coreframe.`,
     description: `${document.projectName} — ${document.client.company}`,
+    metadataBase: new URL("https://coreframe.agency"),
     openGraph: {
-      title: document.number,
+      title: `${document.number} — coreframe.`,
       description: `${document.projectName} — ${document.client.company}`,
+      url: `https://coreframe.agency/invoice/${id}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "coreframe. Invoice",
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${document.number} — coreframe.`,
+      images: [ogImageUrl],
     },
   };
 }

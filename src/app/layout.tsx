@@ -7,50 +7,34 @@ import { StickyCTA } from "@/components/ui/StickyCTA";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: {
-    default: "COREFRAME — Systems / Strategy / Design",
-    template: "%s | COREFRAME",
-  },
-  description:
-    "COREFRAME is a premium full-stack web development studio. We build the digital infrastructure behind modern businesses.",
-  keywords: [
-    "web development",
-    "full stack",
-    "Next.js",
-    "Sri Lanka",
-    "web agency",
-    "custom web app",
-    "systems design",
-    "COREFRAME",
-  ],
-  authors: [{ name: "COREFRAME", url: "https://coreframe.agency" }],
-  creator: "COREFRAME",
+  title: "coreframe. — Systems / Strategy / Design",
+  description: "We build the digital infrastructure behind modern businesses.",
   metadataBase: new URL("https://coreframe.agency"),
-  alternates: {
-    canonical: "https://coreframe.agency",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
-    title: "COREFRAME — Systems / Strategy / Design",
-    description:
-      "We build the digital infrastructure behind modern businesses.",
+    title: "coreframe. — Systems / Strategy / Design",
+    description: "We build the digital infrastructure behind modern businesses.",
     url: "https://coreframe.agency",
-    siteName: "COREFRAME",
-    locale: "en_US",
+    siteName: "coreframe.",
+    images: [
+      {
+        url: "https://coreframe.agency/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "coreframe. — Systems / Strategy / Design",
+      },
+    ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "COREFRAME — Systems / Strategy / Design",
-    description:
-      "We build the digital infrastructure behind modern businesses.",
-    creator: "@coreframe",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: "/favicon.ico",
+    title: "coreframe. — Systems / Strategy / Design",
+    description: "We build the digital infrastructure behind modern businesses.",
+    images: ["https://coreframe.agency/og-image.png"],
   },
 };
 

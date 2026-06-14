@@ -19,16 +19,57 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     include: { client: true },
   });
 
+  const ogImageUrl = `https://coreframe.agency/quotation/${id}/opengraph-image`;
+
   if (!document || document.type !== "QUOTATION") {
-    return { title: "Quotation" };
+    return {
+      title: "Quotation — coreframe.",
+      description: "Your quotation from coreframe. agency.",
+      metadataBase: new URL("https://coreframe.agency"),
+      openGraph: {
+        title: "Quotation — coreframe.",
+        description: "Your quotation from coreframe. agency.",
+        url: `https://coreframe.agency/quotation/${id}`,
+        images: [
+          {
+            url: ogImageUrl,
+            width: 1200,
+            height: 630,
+            alt: "coreframe. Quotation",
+          },
+        ],
+        type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Quotation — coreframe.",
+        images: [ogImageUrl],
+      },
+    };
   }
 
   return {
-    title: document.number,
+    title: `${document.number} — coreframe.`,
     description: `${document.projectName} — ${document.client.company}`,
+    metadataBase: new URL("https://coreframe.agency"),
     openGraph: {
-      title: document.number,
+      title: `${document.number} — coreframe.`,
       description: `${document.projectName} — ${document.client.company}`,
+      url: `https://coreframe.agency/quotation/${id}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: "coreframe. Quotation",
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${document.number} — coreframe.`,
+      images: [ogImageUrl],
     },
   };
 }
