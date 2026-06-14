@@ -1,6 +1,6 @@
 import type { NextConfig } from "next"
 const nextConfig: NextConfig = {
-  serverExternalPackages: ["@prisma/client", "prisma"],
+  serverExternalPackages: ["@prisma/client", "prisma", "puppeteer-core", "@sparticuz/chromium"],
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
