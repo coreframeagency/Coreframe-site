@@ -41,13 +41,16 @@ function DocumentOgImage({
       >
         <img
           src="https://coreframe.agency/logo-og.png"
-          style={{ height: 32, objectFit: "contain" }}
+          width={200}
+          height={35}
+          style={{ objectFit: "contain", objectPosition: "left" }}
           alt="coreframe."
         />
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ fontSize: 32, fontWeight: 700, color: "#FFFFFF" }}>{label}</div>
+          <div style={{ display: "flex", fontSize: 32, fontWeight: 700, color: "#FFFFFF" }}>{label}</div>
           <div
             style={{
+              display: "flex",
               width: 10,
               height: 10,
               borderRadius: "50%",
@@ -57,7 +60,7 @@ function DocumentOgImage({
         </div>
       </div>
 
-      <div style={{ height: 1, backgroundColor: "#1F1F1F", margin: "40px 0" }} />
+      <div style={{ display: "flex", height: 1, backgroundColor: "#1F1F1F", margin: "40px 0" }} />
 
       <div
         style={{
@@ -69,11 +72,11 @@ function DocumentOgImage({
           textAlign: "center",
         }}
       >
-        <div style={{ fontSize: 64, fontWeight: 700, color: "#A6FF00", lineHeight: 1.1 }}>
+        <div style={{ display: "flex", fontSize: 64, fontWeight: 700, color: "#A6FF00", lineHeight: 1.1 }}>
           {number}
         </div>
-        <div style={{ fontSize: 28, color: "#FFFFFF", marginTop: 20 }}>{projectName}</div>
-        <div style={{ fontSize: 24, color: "#555555", marginTop: 12 }}>{clientCompany}</div>
+        <div style={{ display: "flex", fontSize: 28, color: "#FFFFFF", marginTop: 20 }}>{projectName}</div>
+        <div style={{ display: "flex", fontSize: 24, color: "#555555", marginTop: 12 }}>{clientCompany}</div>
       </div>
 
       <div
@@ -90,7 +93,7 @@ function DocumentOgImage({
           <span style={{ color: "#A6FF00", fontSize: 14 }}>/</span>
           <span style={{ color: "#333333", fontSize: 14 }}>DESIGN</span>
         </div>
-        <div style={{ fontSize: 16, color: "#555555" }}>coreframe.agency</div>
+        <div style={{ display: "flex", fontSize: 16, color: "#555555" }}>coreframe.agency</div>
       </div>
     </div>
   );
