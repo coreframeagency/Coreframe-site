@@ -39,7 +39,11 @@ function DocumentOgImage({
           alignItems: "center",
         }}
       >
-        <div style={{ fontSize: 32, fontWeight: 700, color: "#FFFFFF" }}>coreframe.</div>
+        <img
+          src="https://coreframe.agency/logo-og.png"
+          style={{ height: 32, objectFit: "contain" }}
+          alt="coreframe."
+        />
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div style={{ fontSize: 32, fontWeight: 700, color: "#FFFFFF" }}>{label}</div>
           <div
@@ -79,12 +83,12 @@ function DocumentOgImage({
           alignItems: "flex-end",
         }}
       >
-        <div style={{ display: "flex", fontSize: 16, color: "#333333" }}>
-          <span>SYSTEMS </span>
-          <span style={{ color: "#A6FF00" }}>/</span>
-          <span> STRATEGY </span>
-          <span style={{ color: "#A6FF00" }}>/</span>
-          <span> DESIGN</span>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 8 }}>
+          <span style={{ color: "#333333", fontSize: 14 }}>SYSTEMS</span>
+          <span style={{ color: "#A6FF00", fontSize: 14 }}>/</span>
+          <span style={{ color: "#333333", fontSize: 14 }}>STRATEGY</span>
+          <span style={{ color: "#A6FF00", fontSize: 14 }}>/</span>
+          <span style={{ color: "#333333", fontSize: 14 }}>DESIGN</span>
         </div>
         <div style={{ fontSize: 16, color: "#555555" }}>coreframe.agency</div>
       </div>
