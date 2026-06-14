@@ -63,7 +63,9 @@ export function Nav() {
       style={{ height: "var(--nav-height)" }}
     >
       <div className="container flex h-full w-full items-center justify-between">
-        <Wordmark />
+        <div className="mix-blend-screen">
+          <Wordmark />
+        </div>
 
         {/* Desktop navigation */}
         <nav

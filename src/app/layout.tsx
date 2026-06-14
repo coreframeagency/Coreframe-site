@@ -31,6 +31,14 @@ export const metadata: Metadata = {
     description: "We build the digital infrastructure behind modern businesses.",
     images: ["https://coreframe.agency/og-image.png"],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
@@ -40,6 +48,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/fonts/tanod.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="antialiased">
         <CustomCursor />
         <PageTransition />
