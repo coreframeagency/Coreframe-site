@@ -10,11 +10,6 @@ export const metadata: Metadata = {
   title: "coreframe. — Systems / Strategy / Design",
   description: "We build the digital infrastructure behind modern businesses.",
   metadataBase: new URL("https://coreframe.agency"),
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
-  },
   openGraph: {
     title: "coreframe. — Systems / Strategy / Design",
     description: "We build the digital infrastructure behind modern businesses.",
