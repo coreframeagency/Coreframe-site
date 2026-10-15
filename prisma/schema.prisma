@@ -138,3 +138,25 @@ model SiteSettings {
   availability AvailabilityStatus @default(OPEN)
   updatedAt    DateTime           @updatedAt
 }
+
+model WorkItem {
+  id            String   @id @default(uuid())
+  slug          String   @unique
+  name          String
+  url           String?
+  category      String
+  tag           String
+  year          String
+  headline      String
+  problem       String
+  built         String
+  result        String
+  inDevelopment Boolean  @default(false)
+  beforeAfter   Json?
+  published     Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([sortOrder])
+}

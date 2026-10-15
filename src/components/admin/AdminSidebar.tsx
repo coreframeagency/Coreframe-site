@@ -32,6 +32,10 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: "Site",
+    items: [{ href: "/admin/work", label: "Work" }],
+  },
+  {
     label: "Settings",
     items: [{ href: "/admin/availability", label: "Availability" }],
   },
