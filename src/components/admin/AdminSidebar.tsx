@@ -37,7 +37,10 @@ const NAV_GROUPS = [
   },
   {
     label: "Settings",
-    items: [{ href: "/admin/availability", label: "Availability" }],
+    items: [
+      { href: "/admin/availability", label: "Availability" },
+      { href: "/admin/settings/password", label: "Password" },
+    ],
   },
 ];
 
