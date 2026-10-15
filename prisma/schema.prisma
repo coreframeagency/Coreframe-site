@@ -160,3 +160,9 @@ model WorkItem {
 
   @@index([sortOrder])
 }
+
+model AdminCredential {
+  id           String   @id @default("singleton")
+  passwordHash String
+  updatedAt    DateTime @updatedAt
+}
