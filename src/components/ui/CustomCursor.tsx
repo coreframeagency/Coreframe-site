@@ -1,53 +1,76 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
+/**
+ * Lag-free custom cursor.
+ * - Position is written straight to `transform` (GPU-composited) once per frame via rAF.
+ * - No React state on mousemove: hover/visible flags toggle classes directly, only when they change.
+ * - No CSS transition on position, so the cursor never trails the pointer.
+ */
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
     if (!isFinePointer) return;
 
-    document.body.classList.add("has-custom-cursor");
     const cursor = cursorRef.current;
     if (!cursor) return;
 
-    function onMouseMove(event: MouseEvent) {
-      if (!cursor) return;
+    document.body.classList.add("has-custom-cursor");
 
-      cursor.style.left = `${event.clientX}px`;
-      cursor.style.top = `${event.clientY}px`;
-      setIsVisible(true);
+    let x = 0;
+    let y = 0;
+    let frame = 0;
+    let visible = false;
+    let hovering = false;
 
-      const target = event.target as HTMLElement | null;
-      const interactive = target?.closest("a, button, [data-cursor='hover']");
-      setIsHovering(Boolean(interactive));
+    function render() {
+      frame = 0;
+      cursor!.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
     }
 
-    function onMouseLeave() {
-      setIsVisible(false);
-      setIsHovering(false);
+    function onPointerMove(event: PointerEvent) {
+      if (event.pointerType !== "mouse") return;
+      x = event.clientX;
+      y = event.clientY;
+      if (!frame) frame = requestAnimationFrame(render);
+
+      if (!visible) {
+        visible = true;
+        cursor!.classList.add("is-visible");
+      }
+
+      const target = event.target as Element | null;
+      const isInteractive = Boolean(target?.closest?.("a, button, [data-cursor='hover']"));
+      if (isInteractive !== hovering) {
+        hovering = isInteractive;
+        cursor!.classList.toggle("is-hovering", hovering);
+      }
     }
 
-    window.addEventListener("mousemove", onMouseMove);
-    document.documentElement.addEventListener("mouseleave", onMouseLeave);
+    function onLeave() {
+      visible = false;
+      hovering = false;
+      cursor!.classList.remove("is-visible", "is-hovering");
+    }
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", onLeave);
+    window.addEventListener("blur", onLeave);
 
     return () => {
+      if (frame) cancelAnimationFrame(frame);
       document.body.classList.remove("has-custom-cursor");
-      window.removeEventListener("mousemove", onMouseMove);
-      document.documentElement.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("pointermove", onPointerMove);
+      document.documentElement.removeEventListener("mouseleave", onLeave);
+      window.removeEventListener("blur", onLeave);
     };
   }, []);
 
   return (
-    <div
-      ref={cursorRef}
-      className={`custom-cursor hidden md:block ${isVisible ? "is-visible" : ""} ${isHovering ? "is-hovering" : ""}`}
-      aria-hidden="true"
-    >
+    <div ref={cursorRef} className="custom-cursor hidden md:block" aria-hidden="true">
       <div className="custom-cursor__inner">
         <span className="custom-cursor__ring" />
         <span className="custom-cursor__dot" />

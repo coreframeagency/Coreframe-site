@@ -96,6 +96,41 @@ export function getProjectBeforeAfter(project: Project): BeforeAfter | null {
 
 export const PROJECTS: Project[] = [
   {
+    id: "ajplink",
+    name: "ajplink.com",
+    url: "https://ajplink.com",
+    category: "Recruitment Platform",
+    tag: "RECRUITMENT PLATFORM",
+    year: "2026",
+    headline:
+      "A recruitment workflow platform that moves skilled workers from Asia to Japanese employers under the SSW visa system — one shared case from first profile to arrival.",
+    problem:
+      "Japan SSW hiring ran on scattered emails and spreadsheets across four parties who never saw the same record. Employers had no way to verify a candidate before the interview.",
+    built:
+      "Multi-tenant platform for employers, candidates, sending organisations, and support partners. Verified profiles, matching across 16 SSW categories, in-platform interviews, COE tracking, and a 6-language interface.",
+    result:
+      "One system that carries a hire from candidate profile to arrival in Japan — live in production and operated by us.",
+    beforeAfter: {
+      rows: [
+        {
+          before: "Recruitment over email and spreadsheets",
+          after: "One shared case for all four parties",
+          highlight: "One shared case",
+        },
+        {
+          before: "Unverified CVs sent to employers",
+          after: "Documents verified before any employer sees a profile",
+          highlight: "verified",
+        },
+        {
+          before: "Single-language paperwork",
+          after: "Full interface in 6 languages",
+          highlight: "6 languages",
+        },
+      ],
+    },
+  },
+  {
     id: "epiccampus",
     name: "epiccampus.live",
     url: "https://epiccampus.live",
@@ -177,7 +212,7 @@ export const PROJECTS: Project[] = [
   {
     id: "epicielts",
     name: "EpicIELTS",
-    url: "https://epiccampus.live",
+    url: "https://epicielts.live",
     category: "Education / AI",
     tag: "EDUCATION / AI",
     year: "2024",

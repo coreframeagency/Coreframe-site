@@ -7,10 +7,13 @@ import { WorkReel } from "@/components/ui/WorkReel";
 import { WorkHeader } from "./WorkHeader";
 import { ProjectCard } from "./ProjectCard";
 import { ProjectModal } from "./ProjectModal";
-import { PROJECTS } from "./projects";
 import type { Project } from "./projects";
 
-export function WorkPageContent() {
+interface WorkPageContentProps {
+  projects: Project[];
+}
+
+export function WorkPageContent({ projects }: WorkPageContentProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleViewDetails = useCallback((project: Project) => {
@@ -27,7 +30,7 @@ export function WorkPageContent() {
         <WorkHeader />
 
         <WorkReel>
-          {PROJECTS.map((project) => (
+          {projects.map((project) => (
             <RevealOnScroll key={project.id} className="work-reel__card-wrap">
               <MagneticCard>
                 <ProjectCard project={project} onViewDetails={handleViewDetails} />
