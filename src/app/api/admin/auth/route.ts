@@ -5,26 +5,40 @@ import {
   setAdminCookie,
   validateAdminRequest,
 } from "@/lib/auth";
-import { hasAnyAdminPassword, verifyAdminPassword } from "@/lib/admin-password";
+import { checkAdminPassword, shortError } from "@/lib/admin-password";
 
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as { password?: string };
     const password = body.password ?? "";
-    if (!(await hasAnyAdminPassword())) {
-      return NextResponse.json({ error: "Admin password not configured" }, { status: 500 });
+
+    const check = await checkAdminPassword(password);
+    if (check.dbError) {
+      console.error(`[admin-auth] DB unreachable while reading AdminCredential: ${check.dbError}`);
     }
 
-    const valid = await verifyAdminPassword(password);
-    if (!valid) {
+    if (!check.ok) {
+      console.error(`[admin-auth] login failed: ${check.reason}`);
+      if (check.reason === "no password configured") {
+        return NextResponse.json({ error: "Admin password not configured" }, { status: 500 });
+      }
       return NextResponse.json({ error: "Invalid password" }, { status: 401 });
     }
 
-    const { token, expiresAt } = await createAdminSession();
+    let session;
+    try {
+      session = await createAdminSession();
+    } catch (error) {
+      console.error(`[admin-auth] DB unreachable — cannot create session: ${shortError(error)}`);
+      return NextResponse.json({ error: "Database not connected" }, { status: 500 });
+    }
+
+    console.info(`[admin-auth] login ok (source: ${check.source})`);
     const response = NextResponse.json({ ok: true });
-    setAdminCookie(response, token, expiresAt);
+    setAdminCookie(response, session.token, session.expiresAt);
     return response;
-  } catch {
+  } catch (error) {
+    console.error(`[admin-auth] login error: ${shortError(error)}`);
     return NextResponse.json({ error: "Authentication failed" }, { status: 500 });
   }
 }
